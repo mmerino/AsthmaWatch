@@ -16,12 +16,11 @@ public class TestAttributes {
 		String jsonP = "{\"pollenForecast\":{\"forecast\":[1.0,2.0,3.0,4.0],\"pp\":\"Treeant.\"}}";
 		String jsonW = "{\"current_observation\":{\"relative_humidity\": \"50%\",\"win_mph\": 50.0,\"index_heat_f\": \"50\",\"pressure_trend\": \"-\"}}";
 		Gson gson = new GsonBuilder().create();
-		WeatherConditions weather = gson.fromJson(jsonW, WeatherConditions.class);
+		WeatherInfo weather = gson.fromJson(jsonW, WeatherInfo.class);
 		PollenInfo pollenInfo = gson.fromJson(jsonP, PollenInfo.class);
 		request.setAttribute("conditions", weather);
 		request.setAttribute("pollen", pollenInfo);
 		request.getRequestDispatcher("displayResults.jsp").forward(request,
 				response);
-		
 	}
 }
