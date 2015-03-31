@@ -30,4 +30,20 @@ public class Servlet extends HttpServlet {
 //		aw.setAstronomyInfo();
 		aw.goToResults();
 	}
+	// validate the parameters
+    String message;
+    if (zipCode == null|| zipCode.isEmpty() {
+        message = "Please enter a valid zip code.";
+        url = "/enter_zip.jsp";
+    } 
+    else {
+        message = null;
+        url = "/thanks.jsp";
+        UserDB.insert(user);
+    }
+    request.setAttribute("user", user);
+    request.setAttribute("message", message);
+    request.setAttribute("currentYear", currentYear);
+    
+}
 }
