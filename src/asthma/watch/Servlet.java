@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import murach.data.UserDB;
+
 /**
  * Servlet implementation class Servlet
  */
@@ -39,4 +41,20 @@ public class Servlet extends HttpServlet {
 		URL weatherUrl = new URL(Constants.WU_URL + "conditions/q/" + "48145.json");
 		new AsthmaWatch(request, response, claritinUrl, weatherUrl);
 	}
+	// validate the parameters
+    String message;
+    if (zipCode == null|| zipCode.isEmpty() {
+        message = "Please enter a valid zip code.";
+        url = "/enter_zip.jsp";
+    } 
+    else {
+        message = null;
+        url = "/thanks.jsp";
+        UserDB.insert(user);
+    }
+    request.setAttribute("user", user);
+    request.setAttribute("message", message);
+    request.setAttribute("currentYear", currentYear);
+    
+}
 }
