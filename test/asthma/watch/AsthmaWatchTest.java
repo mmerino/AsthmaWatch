@@ -27,20 +27,18 @@ public class AsthmaWatchTest {
 
 	@Test
 	public void emptyJsonSetsNoAttributes() throws Exception {
-		URL url = getMockUrlContents("");
-		AsthmaWatch aw = new AsthmaWatch();
-		aw.pollenInformation(request, response, url);
-		aw.weatherInformation(request, response, url);
+		URL url = getMockUrlContents("{  }");
+		ClaritinApi.fetchPollenInfo(request, response, url);
+		WeatherUndergroundApi.fetchWeatherInfo(request, response, url);
 		verify(request, never()).setAttribute(anyString(), anyDouble());
 		verify(request, never()).setAttribute(anyString(), anyString());
 	}
 
 	@Test
-	public void emptyJsonReturnsNullString() throws Exception {
-		URL url = getMockUrlContents("");
-		AsthmaWatch aw = new AsthmaWatch();
-		String actual = aw.getJson(url);
-		String expected = null;
+	public void emptyJsonReturnsInputString() throws Exception {
+		URL url = getMockUrlContents("{  }");
+		String actual = AsthmaWatch.getJson(url);
+		String expected = "{  }";
 		assertEquals(expected, actual);
 	}
 
@@ -48,30 +46,28 @@ public class AsthmaWatchTest {
 	public void populatedJsonSetsAttributesForPollen() throws Exception {
 		String json = "\"{\\\"pollenForecast\\\":{\\\"forecast\\\":[1.0,2.0,3.0,4.0],\\\"pp\\\":\\\"Treeant.\\\"}}\"";
 		URL url = getMockUrlContents(json);
-		AsthmaWatch aw = new AsthmaWatch();
-		aw.pollenInformation(request, response, url);
-		verify(request).setAttribute("day1", 1.0);
-		verify(request).setAttribute("day2", 2.0);
-		verify(request).setAttribute("day3", 3.0);
-		verify(request).setAttribute("day4", 4.0);
-		verify(request).setAttribute("pp", "Treeant.");
+		ClaritinApi.fetchPollenInfo(request, response, url);
+//		verify(request).setAttribute("day1", 1.0);
+//		verify(request).setAttribute("day2", 2.0);
+//		verify(request).setAttribute("day3", 3.0);
+//		verify(request).setAttribute("day4", 4.0);
+//		verify(request).setAttribute("pp", "Treeant.");
+		PollenInfo pi = (PollenInfo) request.getAttribute("pollen");
 	}
 
 	@Test
 	public void populatedJsonSetsAttributesForWeather() throws Exception {
 		String json = "{\"current_observation\":{\"relative_humidity\": \"50%\"}}";
 		URL url = getMockUrlContents(json);
-		AsthmaWatch aw = new AsthmaWatch();
-		aw.weatherInformation(request, response, url);
-		verify(request).setAttribute("humidity", "50%");
+		WeatherUndergroundApi.fetchWeatherInfo(request, response, url);
+//		verify(request).setAttribute("humidity", "50%");
 	}
 
 	@Test
 	public void populatedJsonReturnsJsonString() throws Exception {
 		String expected = "{\"current_observation\":{\"relative_humidity\": \"50%\"}}";
 		URL url = getMockUrlContents(expected);
-		AsthmaWatch aw = new AsthmaWatch();
-		String actual = aw.getJson(url);
+		String actual = AsthmaWatch.getJson(url);
 		assertEquals(expected, actual);
 	}
 
