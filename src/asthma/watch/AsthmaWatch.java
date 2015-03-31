@@ -18,12 +18,16 @@ public class AsthmaWatch {
 			URL claritinUrl, URL wuUrl) {
 		try {
 			pollenInformation(request, response, claritinUrl);
-//			weatherInformation(request, response, wuUrl);
+			// weatherInformation(request, response, wuUrl);
 			request.getRequestDispatcher("results.jsp").forward(request,
 					response);
 		} catch (Exception e) {
 			request.setAttribute("error", e.getMessage());
 		}
+	}
+
+	public AsthmaWatch() {
+		// TODO Auto-generated constructor stub
 	}
 
 	protected void pollenInformation(HttpServletRequest request,
@@ -36,7 +40,7 @@ public class AsthmaWatch {
 		double[] pollenThreeDay = pollenInfo.pollenForecast.forecast;
 		String pollenType = pollenInfo.pollenForecast.pp;
 		for (int i = 0; i < pollenThreeDay.length; i++) {
-			request.setAttribute("day" + i, pollenThreeDay[i]);
+			request.setAttribute("day" + (i + 1), pollenThreeDay[i]);
 		}
 		request.setAttribute("pp", pollenType);
 	}
@@ -55,6 +59,7 @@ public class AsthmaWatch {
 		request.setAttribute("wind", wind);
 		request.setAttribute("heatIndex", heatIndex);
 		request.setAttribute("pressureTrend", pressureTrend);
+		// request.setAttribute("condition", weather.current_observation);
 	}
 
 	protected String getJson(URL url) throws IOException {
