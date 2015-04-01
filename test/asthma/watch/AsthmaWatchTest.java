@@ -27,9 +27,11 @@ public class AsthmaWatchTest {
 
 	@Test
 	public void emptyJsonSetsNoAttributes() throws Exception {
-		URL url = getMockUrlContents("{  }");
+		URL url = getMockUrlContents("");
 		ClaritinApi.fetchPollenInfo(request, response, url);
 		WeatherUndergroundApi.fetchWeatherInfo(request, response, url);
+		WeatherUndergroundApi.fetchForecastInfo(request, response, url);
+		WeatherUndergroundApi.fetchAstronomyInfo(request, response, url);
 		verify(request, never()).setAttribute(anyString(), anyDouble());
 		verify(request, never()).setAttribute(anyString(), anyString());
 	}
@@ -47,12 +49,10 @@ public class AsthmaWatchTest {
 		String json = "\"{\\\"pollenForecast\\\":{\\\"forecast\\\":[1.0,2.0,3.0,4.0],\\\"pp\\\":\\\"Treeant.\\\"}}\"";
 		URL url = getMockUrlContents(json);
 		ClaritinApi.fetchPollenInfo(request, response, url);
-//		verify(request).setAttribute("day1", 1.0);
-//		verify(request).setAttribute("day2", 2.0);
-//		verify(request).setAttribute("day3", 3.0);
-//		verify(request).setAttribute("day4", 4.0);
-//		verify(request).setAttribute("pp", "Treeant.");
-		PollenInfo pi = (PollenInfo) request.getAttribute("pollen");
+		double[] forecast = {1.0,2.0,3.0,4.0};
+		verify(request).setAttribute("pollenForecast", forecast);
+		verify(request).setAttribute("pollen", "Treeant.");
+//		PollenInfo pi = (PollenInfo) request.getAttribute("pollen");
 	}
 
 	@Test
@@ -60,7 +60,15 @@ public class AsthmaWatchTest {
 		String json = "{\"current_observation\":{\"relative_humidity\": \"50%\"}}";
 		URL url = getMockUrlContents(json);
 		WeatherUndergroundApi.fetchWeatherInfo(request, response, url);
-//		verify(request).setAttribute("humidity", "50%");
+		verify(request).setAttribute("relativeHumidity", "50%");
+	}
+	
+	@Test
+	public void populatedJsonSetsAttributesForForecast() throws Exception {
+		String json = "{\"forecast\":{\"simpleforecast\":{\"forecastday\":[{\"high\":{\"farenheit\":\"50\"}}]}}}";
+		URL url = getMockUrlContents(json);
+		WeatherUndergroundApi.fetchForecastInfo(request, response, url);
+		verify(request).setAttribute("day1High", "50");
 	}
 
 	@Test
@@ -85,5 +93,4 @@ public class AsthmaWatchTest {
 		URL url = new URL("http", "aaa", -1, "", urlStreamHandler);
 		return url;
 	}
-
 }

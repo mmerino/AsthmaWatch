@@ -35,6 +35,11 @@ public class AsthmaWatch {
 		URL url = new URL(UrlReference.WU_URL + "conditions/q/" + zip + ".json");
 		WeatherUndergroundApi.fetchWeatherInfo(request, response, url);
 	}
+	
+	protected void setForecastInfo() throws IOException {
+		URL url = new URL(UrlReference.WU_URL + "forecast/q/" + zip + ".json");
+		WeatherUndergroundApi.fetchForecastInfo(request, response, url);
+	}
 
 	protected void setAstronomyInfo() throws IOException {
 		URL url = new URL(UrlReference.WU_URL + "astronomy/q/" + zip + ".json");
