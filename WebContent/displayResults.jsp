@@ -3,31 +3,49 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Asthma Watch</title>
-<script type="text/javascript" src="scripts/jquery-1.11.2.min.js"></script>
-<script type="text/javascript" src="scripts/jqBarGraph.1.1.min.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 </head>
 <body>
 <h1>Thanks for using AsthmaWatch</h1>
 <p>Here is your current asthma information:</p>
-<label>Asthma Condition:</label><br>
+<label>Asthma Condition:</label>${"normal" }<br>
 <label>Relative Humidity:</label><br>
 <label>Wind Speed(MPH):</label><br>
 <label>Heat Index:</label><br>
 <label>Pressure Trend:</label><br>
 <label>Pollen Count:</label><br>
-<div id="divForGraph" style="width:100%; height:100%; border:1px solid black;">
-   </div>
-   <script type="text/javascript">
+    <script type="text/javascript">
+      google.load('visualization', '1.1', {'packages':['bar']});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+      
+        //need name of variable, ie asthmaData, write ${asthmaData}, how to set that variable in javascript
+        var data = new google.visualization.arrayToDataTable([
+                    [ 'Year', 'Sales', 'Expenses', 'Profit' ],
+                    [ '2014', 1000, 400, 200 ], 
+                    [ '2015', 1170, 460, 250 ],
+                    [ '2016', 660, 1120, 300 ], 
+                    [ '2017', 1030, 540, 350 ] ]);
 
- arrayOfData = new Array(
-     [10.3,'Jan','#f3f3f3'],
-     [15.2,'Feb','#f4f4f4'],
-     [13.1,'Mar','#cccccc'],
-     [16.3,'Apr','#333333'],
-     [14.5,'May','#666666']
-);
-   $('#divForGraph').jqBarGraph({ data: arrayOfData });
+            var options = {
+                'title' : 'Three Day Asthma Forecast',
+                'width' : 400,
+                'height' : 300,
+                colors : [ '#e0440e', '#e6693e', '#ec8f6e', '#f3b49f',
+                        '#f6c7b6' ],
+                is3D : true
+            };
 
-   </script>one
+            var chart = new google.charts.Bar(document
+                    .getElementById('columnchart_material'));
+
+            chart.draw(data, options);
+
+        }
+    </script>
+  </head>
+
+  <body>
+<div id="columnchart_material" style="width: 900px; height: 500px;"></div>
 </body>
 </html>

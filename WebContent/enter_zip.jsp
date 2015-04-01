@@ -15,10 +15,10 @@
 		</p>
 	</c:if>
 	<form action="asthmawatch" method="post">
+		<input type="hidden" name="action" value="add">
 		<label class="pad_top">Zip Code</label> <input type="text"
-			name="zip"  value="zip"> <label>&nbsp;</label>
+		 	name="action"> <label>&nbsp;</label>
 		<input type="submit" value="Submit" class="margin_left">
 	</form>
 </body>
 </html>
-
