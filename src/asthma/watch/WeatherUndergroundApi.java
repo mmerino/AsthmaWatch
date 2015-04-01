@@ -17,6 +17,7 @@ public class WeatherUndergroundApi {
 		if (json != null && !json.isEmpty()) {
 			Gson gson = new GsonBuilder().create();
 			WeatherInfo weatherInfo = gson.fromJson(json, WeatherInfo.class);
+//			request.setAttribute("current", weatherInfo);
 			request.setAttribute("heatIndex",
 					weatherInfo.current_observation.heat_index_f);
 			request.setAttribute("pressureTrend",
@@ -41,22 +42,24 @@ public class WeatherUndergroundApi {
 		if (json != null && !json.isEmpty()) {
 			Gson gson = new GsonBuilder().create();
 			ForecastInfo forecastInfo = gson.fromJson(json, ForecastInfo.class);
+			forecastInfo.setVariables();
 			for (int i = 0; i < forecastInfo.forecast.simpleforecast.forecastday.length; i++) {
-				request.setAttribute(
-						"day" + i + "High",
-						forecastInfo.forecast.simpleforecast.forecastday[i].high.farenheit);
-				request.setAttribute(
-						"day" + i + "Low",
-						forecastInfo.forecast.simpleforecast.forecastday[i].low.farenheit);
-				request.setAttribute(
-						"day" + i + "Average Wind",
-						forecastInfo.forecast.simpleforecast.forecastday[i].avewind.mph);
-				request.setAttribute(
-						"day" + i + "Conditions",
-						forecastInfo.forecast.simpleforecast.forecastday[i].conditions);
-				request.setAttribute(
-						"day" + i + "Humidity",
-						forecastInfo.forecast.simpleforecast.forecastday[i].avehumidity);
+				request.setAttribute("forecast", forecastInfo);
+//				request.setAttribute(
+//						"day" + i + "High",
+//						forecastInfo.forecast.simpleforecast.forecastday[i].high.farenheit);
+//				request.setAttribute(
+//						"day" + i + "Low",
+//						forecastInfo.forecast.simpleforecast.forecastday[i].low.farenheit);
+//				request.setAttribute(
+//						"day" + i + "Average Wind",
+//						forecastInfo.forecast.simpleforecast.forecastday[i].avewind.mph);
+//				request.setAttribute(
+//						"day" + i + "Conditions",
+//						forecastInfo.forecast.simpleforecast.forecastday[i].conditions);
+//				request.setAttribute(
+//						"day" + i + "Humidity",
+//						forecastInfo.forecast.simpleforecast.forecastday[i].avehumidity);
 			}
 		}
 	}
@@ -68,7 +71,7 @@ public class WeatherUndergroundApi {
 			Gson gson = new GsonBuilder().create();
 			AstronomyInfo astronomyInfo = gson.fromJson(json,
 					AstronomyInfo.class);
-			request.setAttribute("astronomy", astronomyInfo.moon_phase);
+			request.setAttribute("astronomy", astronomyInfo);
 		}
 	}
 }
