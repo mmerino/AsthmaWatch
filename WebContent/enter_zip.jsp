@@ -14,10 +14,11 @@
 			<i>${message}</i>
 		</p>
 	</c:if>
-	<form action="enter" method="post">
+	<form action="asthmawatch" method="post">
 		<label class="pad_top">Zip Code</label> <input type="text"
-			name="query" placeholder="48235" value="${user.zipCode}"> <label>&nbsp;</label>
+			name="zip"  value="zip"> <label>&nbsp;</label>
 		<input type="submit" value="Submit" class="margin_left">
 	</form>
 </body>
 </html>
+
