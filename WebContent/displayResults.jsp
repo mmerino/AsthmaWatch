@@ -30,12 +30,12 @@
     </div>
 </div>
 <p>Here is your current asthma information:</p>
-<label>Asthma Condition:</label>${"normal" }<br>
+<label>Asthma Condition:</label><br>
 <label>Relative Humidity:</label><br>
 <label>Wind Speed(MPH):</label><br>
 <label>Heat Index:</label><br>
 <label>Pressure Trend:</label><br>
-<label>Pollen Count:</label><br>
+<label>Pollen Count:</label>${pollen.forecast[0]}<br>
 </div>
     <script type="text/javascript">
       google.load('visualization', '1.1', {'packages':['bar']});
