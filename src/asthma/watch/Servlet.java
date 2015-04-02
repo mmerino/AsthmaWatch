@@ -28,14 +28,14 @@ public class Servlet extends HttpServlet {
 		try {
 			AsthmaWatch aw = new AsthmaWatch(request, response, zip);
 			aw.setPollenInfo();
-			aw.setWeatherInfo();
+//			aw.setWeatherInfo();
 			// aw.setForecastInfo();
 			// aw.setAstronomyInfo();
 			aw.goToResults();
 		} catch (Exception e) {
 			request.setAttribute("message",
 					"There was an error: " + e.getMessage());
-			doGet(request, response);
+			errorOuput(request, response);
 		}
 		}
 
