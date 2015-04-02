@@ -19,6 +19,7 @@ public class ClaritinApi {
 			json = json.substring(1, json.length() - 1);
 			Gson gson = new GsonBuilder().create();
 			PollenInfo pollenInfo = gson.fromJson(json, PollenInfo.class);
+			pollenInfo.pollenForecast.setPollenBar();
 			request.setAttribute("pollen", pollenInfo.pollenForecast);
 		}
 	}
