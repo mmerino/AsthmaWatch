@@ -24,13 +24,13 @@ public class ForecastInfo {
 //		public Low getLow() {
 //			return low;
 //		}
-		public AveWind getAvewind() {
-			return avewind;
-		}
+//		public AveWind getAveWind() {
+//			return avewind;
+//		}
 		public String getConditions() {
 			return conditions;
 		}
-		public double getAvehumidity() {
+		public double getAveHumidity() {
 			return avehumidity;
 		}
 	}
@@ -38,23 +38,23 @@ public class ForecastInfo {
 	class High {
 		String farenheit;
 
-		public String getFarenheit() {
-			return farenheit;
+		public double getHigh() {
+			return Double.parseDouble(farenheit);
 		}
 	}
 
 	class Low {
 		String farenheit;
 
-		public String getFarenheit() {
-			return farenheit;
+		public double getLow() {
+			return Double.parseDouble(farenheit);
 		}
 	}
 
 	class AveWind {
 		long mph;
 
-		public long getMph() {
+		public long getaveWind() {
 			return mph;
 		}
 	}

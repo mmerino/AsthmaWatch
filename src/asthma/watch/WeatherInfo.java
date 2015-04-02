@@ -2,7 +2,7 @@ package asthma.watch;
 
 public class WeatherInfo {
 	Current_Observation current_observation;
-	
+
 	public class Current_Observation {
 		double temp_f;
 		String relative_humidity;
@@ -12,29 +12,38 @@ public class WeatherInfo {
 		String pressure_trend;
 		String heat_index_f;
 		String UV;
+
 		public double getTemp() {
 			return temp_f;
 		}
-		public String getHumidity() {
-			return relative_humidity;
+
+		public double getHumidity() {
+			String humidity = relative_humidity.replaceAll("%", "");
+			return Double.parseDouble(humidity);
 		}
+
 		public String getWindDescription() {
 			return wind_string;
 		}
-		public String getWindDir() {
+
+		public String getWindDirection() {
 			return wind_dir;
 		}
-		public double getWindSpeedh() {
+
+		public double getWindSpeed() {
 			return wind_mph;
 		}
+
 		public String getPressureTrend() {
 			return pressure_trend;
 		}
+
 		public String getHeatIndex() {
 			return heat_index_f;
 		}
-		public String getUV() {
-			return UV;
+
+		public double getUv() {
+			return Double.parseDouble(UV);
 		}
 	}
 }
