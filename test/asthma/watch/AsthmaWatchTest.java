@@ -32,8 +32,7 @@ public class AsthmaWatchTest {
 		WeatherUndergroundApi.fetchWeatherInfo(request, response, url);
 		WeatherUndergroundApi.fetchForecastInfo(request, response, url);
 		WeatherUndergroundApi.fetchAstronomyInfo(request, response, url);
-		verify(request, never()).setAttribute(anyString(), anyDouble());
-		verify(request, never()).setAttribute(anyString(), anyString());
+		verify(request, never()).setAttribute(anyString(), anyObject());
 	}
 
 	@Test
@@ -49,10 +48,7 @@ public class AsthmaWatchTest {
 		String json = "\"{\\\"pollenForecast\\\":{\\\"forecast\\\":[1.0,2.0,3.0,4.0],\\\"pp\\\":\\\"Treeant.\\\"}}\"";
 		URL url = getMockUrlContents(json);
 		ClaritinApi.fetchPollenInfo(request, response, url);
-		double[] forecast = {1.0,2.0,3.0,4.0};
-		verify(request).setAttribute("pollenForecast", forecast);
-		verify(request).setAttribute("pollen", "Treeant.");
-//		PollenInfo pi = (PollenInfo) request.getAttribute("pollen");
+		verify(request).setAttribute(eq("pollen"), anyObject());
 	}
 
 	@Test
@@ -60,7 +56,7 @@ public class AsthmaWatchTest {
 		String json = "{\"current_observation\":{\"relative_humidity\": \"50%\"}}";
 		URL url = getMockUrlContents(json);
 		WeatherUndergroundApi.fetchWeatherInfo(request, response, url);
-		verify(request).setAttribute("relativeHumidity", "50%");
+		verify(request).setAttribute(eq("current"), anyObject());
 	}
 	
 	@Test
@@ -68,7 +64,7 @@ public class AsthmaWatchTest {
 		String json = "{\"forecast\":{\"simpleforecast\":{\"forecastday\":[{\"high\":{\"farenheit\":\"50\"}}]}}}";
 		URL url = getMockUrlContents(json);
 		WeatherUndergroundApi.fetchForecastInfo(request, response, url);
-		verify(request).setAttribute("day1High", "50");
+		verify(request).setAttribute(eq("forecast"), anyObject());
 	}
 
 	@Test
