@@ -4,9 +4,31 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Asthma Watch</title>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<link rel="stylesheet" type="text/css" href="displayResults.css">
 </head>
 <body>
 <h1>Thanks for using AsthmaWatch</h1>
+<div id="background-wrap">
+    <div class="x1">
+        <div class="cloud"></div>
+    </div>
+
+    <div class="x2">
+        <div class="cloud"></div>
+    </div>
+
+    <div class="x3">
+        <div class="cloud"></div>
+    </div>
+
+    <div class="x4">
+        <div class="cloud"></div>
+    </div>
+
+    <div class="x5">
+        <div class="cloud"></div>
+    </div>
+</div>
 <p>Here is your current asthma information:</p>
 <label>Asthma Condition:</label>${"normal" }<br>
 <label>Relative Humidity:</label><br>
@@ -14,6 +36,7 @@
 <label>Heat Index:</label><br>
 <label>Pressure Trend:</label><br>
 <label>Pollen Count:</label><br>
+</div>
     <script type="text/javascript">
       google.load('visualization', '1.1', {'packages':['bar']});
       google.setOnLoadCallback(drawChart);
@@ -21,11 +44,11 @@
       
         //need name of variable, ie asthmaData, write ${asthmaData}, how to set that variable in javascript
         var data = new google.visualization.arrayToDataTable([
-                    [ 'Year', 'Sales', 'Expenses', 'Profit' ],
-                    [ '2014', 1000, 400, 200 ], 
-                    [ '2015', 1170, 460, 250 ],
-                    [ '2016', 660, 1120, 300 ], 
-                    [ '2017', 1030, 540, 350 ] ]);
+                    [ 'Relative Humidity', 'Wind Speed', 'Heat Index', 'Pressure Trend', 'Pollen Count' ],
+                    [ '2014', 1000, 400, 200, 500 ], 
+                    [ '2015', 1170, 460, 250, 500 ],
+                    [ '2016', 660, 1120, 300, 500 ], 
+                    [ '2017', 1030, 540, 350, 500 ] ]);
 
             var options = {
                 'title' : 'Three Day Asthma Forecast',
