@@ -45,6 +45,11 @@ public class AsthmaWatch {
 		URL url = new URL(UrlReference.WU_URL + "astronomy/q/" + zip + ".json");
 		WeatherUndergroundApi.fetchAstronomyInfo(request, response, url);
 	}
+	
+	protected void setPollutionInfo() throws IOException {
+		URL url = new URL(UrlReference.EPA_URL + zip);
+		EpaApi.fetchPollutionInfo(request, response, url);
+	}
 
 	protected void goToResults() throws ServletException, IOException {
 		request.getRequestDispatcher("displayResults.jsp").forward(request,
