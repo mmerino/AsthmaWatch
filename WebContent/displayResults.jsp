@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="displayResults.css">
 </head>
 <body>
-<h1>Thanks for using AsthmaWatch</h1>
+<h1>Thank you for using AsthmaWatch</h1>
 <div id="background-wrap">
     <div class="x1">
         <div class="cloud"></div>
@@ -37,6 +37,7 @@
 <label>Pressure Trend:</label><br>
 <label>Pollen Count:</label><br>
 </div>
+
     <script type="text/javascript">
       google.load('visualization', '1.1', {'packages':['bar']});
       google.setOnLoadCallback(drawChart);
@@ -44,15 +45,16 @@
       
         //need name of variable, ie asthmaData, write ${asthmaData}, how to set that variable in javascript
         var data = new google.visualization.arrayToDataTable([
-                    [ 'Relative Humidity', 'Wind Speed', 'Heat Index', 'Pressure Trend', 'Pollen Count' ],
-                    [ '2014', 1000, 400, 200, 500 ], 
-                    [ '2015', 1170, 460, 250, 500 ],
-                    [ '2016', 660, 1120, 300, 500 ], 
-                    [ '2017', 1030, 540, 350, 500 ] ]);
+                    [ 'Asthma Conditions','Danger Level', {role: 'annotation'}, ],
+                    [ 'Wind', ${current.windBar}, 'Wind'], 
+                    [ 'Pollen', ${pollen.pollenBar[0]} 'Pollen' ],
+                    [ 'Humidity',${current.humidityBar}, 'Humidity' ], 
+                    [ 'AirTemp', ${current.tempBar}, 'Heat' ] ]);
+					
 
             var options = {
-                'title' : 'Three Day Asthma Forecast',
-                'width' : 400,
+                'title' : 'Asthma Conditions',
+                'width' : 500,
                 'height' : 300,
                 colors : [ '#e0440e', '#e6693e', '#ec8f6e', '#f3b49f',
                         '#f6c7b6' ],
