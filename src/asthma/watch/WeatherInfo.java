@@ -15,16 +15,28 @@ public class WeatherInfo {
 
 		double humidityBar;
 		double windBar;
+		double tempBar;
+
+		public void setTempBar() {
+			if (temp_f < 32 || temp_f > 85) {
+				tempBar = 3.0;
+			} else if (temp_f <45  && temp_f > 70) {
+				tempBar = 2.0;
+			} else {
+				tempBar = 1.0;
+			}
+		}
 
 		public void setHumidityBar() {
-			double humidity = Double.parseDouble(relative_humidity.replaceAll("%", ""));
+			double humidity = Double.parseDouble(relative_humidity.replaceAll(
+					"%", ""));
 			if (humidity < 30 || humidity > 60) {
 				humidityBar = 3.0;
 			} else {
 				humidityBar = 1.0;
 			}
 		}
-		
+
 		public void setWindBar() {
 			if (wind_mph < 12) {
 				windBar = 1.0;
@@ -66,6 +78,10 @@ public class WeatherInfo {
 
 		public double getUv() {
 			return Double.parseDouble(UV);
+		}
+
+		public double getTempBar() {
+			return tempBar;
 		}
 
 		public double getHumidityBar() {
