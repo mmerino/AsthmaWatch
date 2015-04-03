@@ -9,6 +9,7 @@ p {
 
 div {
     text-align: center;
+    padding: .5em; 
 }
 
 #chart_div {
@@ -23,14 +24,14 @@ body {
 	font: 100% Arial, Sans Serif;
 	height: 100vh;
 	margin: 0;
-	padding: 10px;
+	padding: .625em;
 	overflow-x: hidden;
 }
 
 #background-wrap {
     bottom: 0;
 	left: 0;
-	padding-top: 50px;
+	padding-top: 3.125em;
 	position: fixed;
 	right: 0;
 	top: 0;
