@@ -21,7 +21,11 @@ public class ForecastInfo {
 		AveWind avewind;
 		String conditions;
 		double avehumidity;
+		String icon_url;
 		
+		public String getForecastIcon() {
+			return icon_url;
+		}
 		public String getConditions() {
 			return conditions;
 		}

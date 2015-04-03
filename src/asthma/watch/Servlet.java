@@ -1,7 +1,6 @@
 package asthma.watch;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,6 +29,7 @@ public class Servlet extends HttpServlet {
 				aw.setWeatherInfo();
 				// aw.setForecastInfo();
 				// aw.setAstronomyInfo();
+				// aw.setPollutionInfo();
 				aw.goToResults();
 			} catch (Exception e) {
 				request.setAttribute("message",

@@ -10,6 +10,19 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class WeatherUndergroundApi {
+	
+//	protected static void fetchWeatherInformation(HttpServletRequest request,
+//			HttpServletResponse response, URL url) throws IOException {
+//		String json = AsthmaWatch.getJson(url);
+//		if (json != null && !json.isEmpty()) {
+//			Gson gson = new GsonBuilder().create();
+//			WeatherInfo weatherInfo = gson.fromJson(json, WeatherInfo.class);
+//			weatherInfo.current_observation.setHumidityBar();
+//			weatherInfo.current_observation.setTempBar();
+//			weatherInfo.current_observation.setWindBar();
+//			request.setAttribute("current", weatherInfo.current_observation);
+//		}
+//	}
 
 	protected static void fetchWeatherInfo(HttpServletRequest request,
 			HttpServletResponse response, URL url) throws IOException {

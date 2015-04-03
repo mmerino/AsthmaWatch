@@ -43,7 +43,8 @@
 				Speed(MPH):</label> ${current.windSpeed} <br> <label>Heat
 				Index:</label> ${current.temp} <br> <label>Pressure Trend:</label>
 			${current.pressureTrend} <br> <label>Pollen Count:</label>
-			${pollen.pollenCount[0]} <br>
+			${pollen.pollenCount[0]} <br><label>Pollution(Air Quality Index):</label>
+			${pollution.pollution} <br>
 			<div>
 				<script type="text/javascript">
 		google.load("visualization", "1.1", {
@@ -63,6 +64,7 @@
 			data.addRows([ [ 'Pollen', parseInt('${pollen.pollenBar[0]}') , '' ],
 					[ 'Humidity', parseInt('${current.humidityBar}'), '' ], 
 					[ 'Temp', parseInt('${current.tempBar}'), '' ],
+					[ 'Pollution', parseInt('${pollution.pollutionBar}'), '' ],
 					[ 'Wind', parseInt('${current.windBar}'), '' ], ]);
 
 			var view = new google.visualization.DataView(data);
