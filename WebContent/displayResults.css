@@ -10,13 +10,20 @@ p {
 div {
     text-align: center;
 }
+
+#columnchart_material {
+	display: block;
+	margin: 0 auto;
+}
+
 body {
-	background: #00b4ff;
+	background: #6ab7d4;
+	text-align: center;
 	color: #333;
 	font: 100% Arial, Sans Serif;
 	height: 100vh;
 	margin: 0;
-	padding: 0;
+	padding: 10px;
 	overflow-x: hidden;
 }
 
@@ -28,6 +35,23 @@ body {
 	right: 0;
 	top: 0;
 	z-index: -1;
+}
+
+div.transbox {
+    width: 880px;
+    margin: 0 auto;
+    padding: 10px 40px 10px 40px;
+    background: #ffff;
+    background: rgba(255, 255, 255, .90);
+    position: relative;
+    border-style: double;
+    border-color: dark blue;
+}
+
+div.transbox p {
+    margin: 5%;
+    font-weight: bold;
+    color: #000000;
 }
 
 /* KEYFRAMES */
