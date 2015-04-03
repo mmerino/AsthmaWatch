@@ -7,70 +7,95 @@
 <link rel="stylesheet" type="text/css" href="displayResults.css">
 </head>
 <body>
-<h1>Thank you for using AsthmaWatch</h1>
-<div id="background-wrap">
-    <div class="x1">
-        <div class="cloud"></div>
-    </div>
+	<h1>Thank you for using AsthmaWatch</h1>
+	<div id="background-wrap">
+		<div class="x1">
+			<div class="cloud"></div>
+		</div>
 
-    <div class="x2">
-        <div class="cloud"></div>
-    </div>
+		<div class="x2">
+			<div class="cloud"></div>
+		</div>
 
-    <div class="x3">
-        <div class="cloud"></div>
-    </div>
+		<div class="x3">
+			<div class="cloud"></div>
+		</div>
 
-    <div class="x4">
-        <div class="cloud"></div>
-    </div>
+		<div class="x4">
+			<div class="cloud"></div>
+		</div>
 
-    <div class="x5">
-        <div class="cloud"></div>
-    </div>
-</div>
-<p>Here is your current asthma information:</p>
-<label>Asthma Condition:</label> ${pollen.predominantPollen}<br>
-<label>Relative Humidity:</label> ${current.humidity}<br>
-<label>Wind Speed(MPH):</label> ${current.windSpeed}<br>
-<label>Heat Index:</label> ${current.temp}<br>
-<label>Pressure Trend:</label> ${current.pressureTrend}<br>
-<label>Pollen Count:</label> ${pollen.pollenCount[0]}<br>
-</div>
+		<div class="x5">
+			<div class="cloud"></div>
+		</div>
+	</div>
+	<p>Here is your current asthma information:</p>
+	<label>Asthma Condition:</label> ${pollen.predominantPollen}
+	<br>
+	<label>Relative Humidity:</label> ${current.humidity}
+	<br>
+	<label>Wind Speed(MPH):</label> ${current.windSpeed}
+	<br>
+	<label>Heat Index:</label> ${current.temp}
+	<br>
+	<label>Pressure Trend:</label> ${current.pressureTrend}
+	<br>
+	<label>Pollen Count:</label> ${pollen.pollenCount[0]}
+	<br>
+	</div>
 
-    <script type="text/javascript">
-      google.load('visualization', '1.1', {'packages':['bar']});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
-      
-        //need name of variable, ie asthmaData, write ${asthmaData}, how to set that variable in javascript
-        var data = new google.visualization.arrayToDataTable([
-                    [ 'Asthma Conditions','Danger Level', {role: 'annotation'}, ],
-                    [ 'Wind', '${current.windBar}', 'Wind'], 
-                    [ 'Pollen', '${pollen.pollenBar[0]}', 'Pollen' ],
-                    [ 'Humidity', '${current.humidityBar}', 'Humidity' ], 
-                    [ 'AirTemp', '${current.tempBar}', 'Heat' ] ]);
-					
+	<script type="text/javascript">
+		google.load("visualization", "1", {
+			packages : [ "corechart" ]
+		});
+		google.setOnLoadCallback(drawChart);
 
-            var options = {
-                'title' : 'Asthma Conditions',
-                'width' : 500,
-                'height' : 300,
-                colors : [ '#e0440e', '#e6693e', '#ec8f6e', '#f3b49f',
-                        '#f6c7b6' ],
-                is3D : true
-            };
+		function drawChart() {
+			var data = new google.visualization.DataTable();
+			data.addColumn('string', 'Name');
+			data.addColumn('number', 'Value');
+			data.addColumn({
+				type : 'string',
+				role : 'annotation'
+			});
+			
+			data.addRows([ [ 'Pollen', parseInt('${pollen.pollenBar[0]}') , '' ],
+					[ 'Humidity', parseInt('${current.humidityBar}'), '' ], 
+					[ 'Temp', parseInt('${current.tempBar}'), '' ],
+					[ 'Wind', parseInt('${current.windBar}'), '' ], ]);
 
-            var chart = new google.charts.Bar(document
-                    .getElementById('columnchart_material'));
+			var view = new google.visualization.DataView(data);
+			view.setColumns([ 0, 1, 1, 2 ]);
 
-            chart.draw(data, options);
+			var chart = new google.visualization.ColumnChart(document
+					.getElementById('chart_div'));
 
-        }
-    </script>
-  </head>
+			chart.draw(view, {
+				height : 400,
+				width : 600,
+				series : {
+					0 : {
+						type : 'bars'
+					},
+					1 : {
+						type : 'line',
+						color : 'grey',
+						lineWidth : 0,
+						pointSize : 0,
+						visibleInLegend : false
+					}
+				},
+				vAxis : {
+					minValue: 0,
+					maxValue : 3,
+					ticks : [ {v : 1,f : "low"}, {v : 2,f : "medium"}, {v : 3,f : "high"} ]
+				}
+			});
+		}
+	</script>
+</head>
 
-  <body>
-<div id="columnchart_material" style="width: 900px; height: 500px;"></div>
+<body>
+	<div id="chart_div"></div>
 </body>
 </html>

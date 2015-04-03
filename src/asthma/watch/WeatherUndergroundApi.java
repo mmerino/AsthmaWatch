@@ -32,22 +32,6 @@ public class WeatherUndergroundApi {
 			ForecastInfo forecastInfo = gson.fromJson(json, ForecastInfo.class);
 			request.setAttribute("forecast",
 					forecastInfo.forecast.simpleforecast.forecastday);
-//			 request.setAttribute(
-//			 "day" + i + "High",
-//			 forecastInfo.forecast.simpleforecast.forecastday[i].high.farenheit);
-//			 request.setAttribute(
-//			 "day" + i + "Low",
-//			 forecastInfo.forecast.simpleforecast.forecastday[i].low.farenheit);
-//			 request.setAttribute(
-//			 "day" + i + "AverageWind",
-//			 forecastInfo.forecast.simpleforecast.forecastday[i].avewind.mph);
-//			 request.setAttribute(
-//			 "day" + i + "Conditions",
-//			 forecastInfo.forecast.simpleforecast.forecastday[i].conditions);
-//			 request.setAttribute(
-//			 "day" + i + "Humidity",
-//			 forecastInfo.forecast.simpleforecast.forecastday[i].avehumidity);
-//			 }
 		}
 	}
 
