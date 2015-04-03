@@ -28,7 +28,7 @@ public class Servlet extends HttpServlet {
 		try {
 			AsthmaWatch aw = new AsthmaWatch(request, response, zip);
 			aw.setPollenInfo();
-//			aw.setWeatherInfo();
+			aw.setWeatherInfo();
 			// aw.setForecastInfo();
 			// aw.setAstronomyInfo();
 			aw.goToResults();

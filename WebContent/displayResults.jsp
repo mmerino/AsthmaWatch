@@ -30,12 +30,12 @@
     </div>
 </div>
 <p>Here is your current asthma information:</p>
-<label>Asthma Condition:</label>${"normal" }<br>
-<label>Relative Humidity:</label><br>
-<label>Wind Speed(MPH):</label><br>
-<label>Heat Index:</label><br>
-<label>Pressure Trend:</label><br>
-<label>Pollen Count:</label><br>
+<label>Asthma Condition:</label> ${pollen.predominantPollen}<br>
+<label>Relative Humidity:</label> ${current.humidity}<br>
+<label>Wind Speed(MPH):</label> ${current.windSpeed}<br>
+<label>Heat Index:</label> ${current.temp}<br>
+<label>Pressure Trend:</label> ${current.pressureTrend}<br>
+<label>Pollen Count:</label> ${pollen.pollenCount[0]}<br>
 </div>
 
     <script type="text/javascript">
@@ -46,10 +46,10 @@
         //need name of variable, ie asthmaData, write ${asthmaData}, how to set that variable in javascript
         var data = new google.visualization.arrayToDataTable([
                     [ 'Asthma Conditions','Danger Level', {role: 'annotation'}, ],
-                    [ 'Wind', ${current.windBar}, 'Wind'], 
-                    [ 'Pollen', ${pollen.pollenBar[0]} 'Pollen' ],
-                    [ 'Humidity',${current.humidityBar}, 'Humidity' ], 
-                    [ 'AirTemp', ${current.tempBar}, 'Heat' ] ]);
+                    [ 'Wind', '${current.windBar}', 'Wind'], 
+                    [ 'Pollen', '${pollen.pollenBar[0]}', 'Pollen' ],
+                    [ 'Humidity', '${current.humidityBar}', 'Humidity' ], 
+                    [ 'AirTemp', '${current.tempBar}', 'Heat' ] ]);
 					
 
             var options = {

@@ -60,7 +60,11 @@ public class AsthmaWatch {
 		InputStream input = url.openStream();
 		BufferedReader buffer = new BufferedReader(new InputStreamReader(input,
 				StandardCharsets.UTF_8));
-		String json = buffer.readLine();
-		return json;
+		String lines;
+		StringBuilder json = new StringBuilder();
+		while ((lines = buffer.readLine()) != null) {
+			json.append(lines);
+		}
+		return json.toString();
 	}
 }

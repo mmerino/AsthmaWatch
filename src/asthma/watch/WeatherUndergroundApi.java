@@ -17,22 +17,10 @@ public class WeatherUndergroundApi {
 		if (json != null && !json.isEmpty()) {
 			Gson gson = new GsonBuilder().create();
 			WeatherInfo weatherInfo = gson.fromJson(json, WeatherInfo.class);
+			weatherInfo.current_observation.setHumidityBar();
+			weatherInfo.current_observation.setTempBar();
+			weatherInfo.current_observation.setWindBar();
 			request.setAttribute("current", weatherInfo.current_observation);
-			// request.setAttribute("heatIndex",
-			// weatherInfo.current_observation.heat_index_f);
-			// request.setAttribute("pressureTrend",
-			// weatherInfo.current_observation.pressure_trend);
-			// request.setAttribute("relativeHumidity",
-			// weatherInfo.current_observation.relative_humidity);
-			// request.setAttribute("tempF",
-			// weatherInfo.current_observation.temp_f);
-			// request.setAttribute("UV", weatherInfo.current_observation.UV);
-			// request.setAttribute("windDir",
-			// weatherInfo.current_observation.wind_dir);
-			// request.setAttribute("windMph",
-			// weatherInfo.current_observation.wind_mph);
-			// request.setAttribute("windString",
-			// weatherInfo.current_observation.wind_string);
 		}
 	}
 
