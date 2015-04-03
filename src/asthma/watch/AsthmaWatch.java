@@ -65,6 +65,7 @@ public class AsthmaWatch {
 		while ((lines = buffer.readLine()) != null) {
 			json.append(lines);
 		}
+		buffer.close();
 		return json.toString();
 	}
 }

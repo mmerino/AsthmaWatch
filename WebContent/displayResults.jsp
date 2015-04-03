@@ -94,7 +94,7 @@
 		}
 	</script>
 
-	<div id="chart_div" style="width: 900px; height: 500px;"></div>
+	<div id="chart_div" style="width: 600px; height: 400px;"></div>
 			</div>
 		</div>
 	</div>
