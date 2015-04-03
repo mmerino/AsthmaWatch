@@ -6,6 +6,10 @@ public class ForecastInfo {
 	class Forecast {
 		SimpleForecast simpleforecast;
 	}
+	
+	class TxtForecast {
+		ForecastDay[] forecastday;
+	}
 
 	class SimpleForecast {
 		ForecastDay[] forecastday;
@@ -18,15 +22,6 @@ public class ForecastInfo {
 		String conditions;
 		double avehumidity;
 		
-//		public High getHigh() {
-//			return high;
-//		}
-//		public Low getLow() {
-//			return low;
-//		}
-//		public AveWind getAveWind() {
-//			return avewind;
-//		}
 		public String getConditions() {
 			return conditions;
 		}

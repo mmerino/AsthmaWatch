@@ -21,22 +21,21 @@ public class Servlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String zip = request.getParameter("zip");
-		if (zip == null || zip.isEmpty() || zip.length()<5) {
+		if (zip == null || zip.isEmpty() || zip.length() < 5) {
 			errorOuput(request, response);
-		}
-		else{
-		try {
-			AsthmaWatch aw = new AsthmaWatch(request, response, zip);
-			aw.setPollenInfo();
-			aw.setWeatherInfo();
-			// aw.setForecastInfo();
-			// aw.setAstronomyInfo();
-			aw.goToResults();
-		} catch (Exception e) {
-			request.setAttribute("message",
-					"There was an error: " + e.getMessage());
-			errorOuput(request, response);
-		}
+		} else {
+			try {
+				AsthmaWatch aw = new AsthmaWatch(request, response, zip);
+				aw.setPollenInfo();
+				aw.setWeatherInfo();
+				// aw.setForecastInfo();
+				// aw.setAstronomyInfo();
+				aw.goToResults();
+			} catch (Exception e) {
+				request.setAttribute("message",
+						"There was an error: " + e.getMessage());
+				errorOuput(request, response);
+			}
 		}
 
 	}
