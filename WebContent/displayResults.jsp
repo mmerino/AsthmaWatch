@@ -10,7 +10,7 @@
 <body>
 
 	<div class="background">
-		<div class="transbox" class="double">
+		<div class="transbox">
 
 			<h1>Thank you for using AsthmaWatch</h1>
 			<div id="background-wrap">
