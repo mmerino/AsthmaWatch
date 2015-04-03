@@ -22,7 +22,7 @@ body {
 	background: #6ab7d4;
 	text-align: center;
 	color: #333;
-	font: 100% Arial, Sans Serif;
+	font-family: Lato, Sans Serif;
 	height: 100vh;
 	margin: 0;
 	padding: 10px;
@@ -48,6 +48,7 @@ div.transbox {
     position: relative;
     border-style: double;
     border-color: dark blue;
+    border-radius: 25px;
 }
 
 div.transbox p {
