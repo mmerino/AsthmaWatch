@@ -1,13 +1,63 @@
 package asthma.watch;
 
-public class ForecastInfo {
+public class ForecastInfo implements WeatherInterface {
 	Forecast forecast;
+
+	String[] high;
+	String[] low;
+	long[] aveWindSpeed;
+	String[] conditions;
+	double[] aveHumidity;
+	String[] forecastIcon;
+
+	public void setAttributes() {
+		int forecastLength = forecast.simpleforecast.forecastday.length;
+		high = new String[forecastLength];
+		low = new String[forecastLength];
+		aveWindSpeed = new long[forecastLength];
+		conditions = new String[forecastLength];
+		aveHumidity = new double[forecastLength];
+		forecastIcon = new String[forecastLength];
+		for (int i = 0; i < forecastLength; i++) {
+			this.high[i] = forecast.simpleforecast.forecastday[i].high.fahrenheit;
+			this.low[i] = forecast.simpleforecast.forecastday[i].low.fahrenheit;
+			this.aveWindSpeed[i] = forecast.simpleforecast.forecastday[i].avewind.mph;
+			this.conditions[i] = forecast.simpleforecast.forecastday[i].conditions;
+			this.aveHumidity[i] = forecast.simpleforecast.forecastday[i].avehumidity;
+			this.forecastIcon[i] = forecast.txt_forecast.forecastday[i].icon_url;
+		}
+	}
+	
+	public String[] getHigh() {
+		return high;
+	}
+
+	public String[] getLow() {
+		return low;
+	}
+
+	public long[] getAveWindSpeed() {
+		return aveWindSpeed;
+	}
+
+	public String[] getConditions() {
+		return conditions;
+	}
+
+	public double[] getAveHumidity() {
+		return aveHumidity;
+	}
+
+	public String[] getForecastIcon() {
+		return forecastIcon;
+	}
 
 	class Forecast {
 		SimpleForecast simpleforecast;
+		Txt_Forecast txt_forecast;
 	}
-	
-	class TxtForecast {
+
+	class Txt_Forecast {
 		ForecastDay[] forecastday;
 	}
 
@@ -22,39 +72,17 @@ public class ForecastInfo {
 		String conditions;
 		double avehumidity;
 		String icon_url;
-		
-		public String getForecastIcon() {
-			return icon_url;
-		}
-		public String getConditions() {
-			return conditions;
-		}
-		public double getAveHumidity() {
-			return avehumidity;
-		}
 	}
 
 	class High {
-		String farenheit;
-
-		public double getHigh() {
-			return Double.parseDouble(farenheit);
-		}
+		String fahrenheit;
 	}
 
 	class Low {
-		String farenheit;
-
-		public double getLow() {
-			return Double.parseDouble(farenheit);
-		}
+		String fahrenheit;
 	}
 
 	class AveWind {
 		long mph;
-
-		public long getaveWind() {
-			return mph;
-		}
 	}
 }

@@ -25,8 +25,20 @@ public class Servlet extends HttpServlet {
 		} else {
 			try {
 				AsthmaWatch aw = new AsthmaWatch(request, response, zip);
-				aw.setPollenInfo();
-				aw.setWeatherInfo();
+				/*
+				 * TODO Removed unneeded classes EpaApi and ClaritinApi. Rename
+				 * WeatherUndergroundApi, WeatherInterface to be more general
+				 * since they now encompass everything. Rename ___Info classes
+				 * as Gson____Info or something for alphabetical aggregation.
+				 * Decided on switch vs clusterfuck of else..if. Move getJson
+				 * class to WeatherUndergroundApi?
+				 */
+				// aw.setPollenInfo();
+				aw.setCustomWeather("pollen");
+				aw.setCustomWeather("conditions");
+				aw.setCustomWeather("pollution");
+				// aw.setCustomWeather("forecast");
+				// aw.setWeatherInfo();
 				// aw.setForecastInfo();
 				// aw.setAstronomyInfo();
 				// aw.setPollutionInfo();

@@ -1,28 +1,35 @@
 package asthma.watch;
 
-public class PollutionInfo {
-	Category category;
+public class PollutionInfo implements WeatherInterface {
+	Category Category;
+	
+	double airQualityIndex;
+	int airQualityBar;
+	
+	public void setAttributes() {
+		this.airQualityIndex = Category.Number;
+		setAirQualityBar();
+	}
 
+	public void setAirQualityBar() {
+		if (airQualityIndex > 3) {
+			airQualityBar = 3;
+		} else if (airQualityIndex < 2) {
+			airQualityBar = 1;
+		} else {
+			airQualityBar = 2;
+		}
+	}
+
+	public double getAirQualityIndex() {
+		return airQualityIndex;
+	}
+
+	public int getAirQualityBar() {
+		return airQualityBar;
+	}
+	
 	public class Category {
-		public int Number;
-		public int pollutionBar;
-
-		public int getPollution() {
-			return Number;
-		}
-
-		public void setPollutionBar() {
-			if (Number > 3) {
-				pollutionBar = 3;
-			} else if (Number < 2) {
-				pollutionBar = 1;
-			} else {
-				pollutionBar = 2;
-			}
-		}
-
-		public int getPollutionBar() {
-			return pollutionBar;
-		}
+		double Number;
 	}
 }
