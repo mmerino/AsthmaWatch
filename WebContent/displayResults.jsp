@@ -39,12 +39,12 @@
 
 			<p>Here is your current asthma information:</p>
 			<label>Asthma Condition:</label> ${pollen.predominantPollen} <br>
-			<label>Relative Humidity:</label> ${current.humidity} <br> <label>Wind
-				Speed(MPH):</label> ${current.windSpeed} <br> <label>Heat
-				Index:</label> ${current.temp} <br> <label>Pressure Trend:</label>
-			${current.pressureTrend} <br> <label>Pollen Count:</label>
+			<label>Relative Humidity:</label> ${conditions.humidity} <br> <label>Wind
+				Speed(MPH):</label> ${conditions.windSpeed} <br> <label>Heat
+				Index:</label> ${conditions.temp} <br> <label>Pressure Trend:</label>
+			${conditions.pressureTrend} <br> <label>Pollen Count:</label>
 			${pollen.pollenCount[0]} <br><label>Pollution(Air Quality Index):</label>
-			${pollution.pollution} <br>
+			${pollution.airQualityIndex} <br>
 			<div>
 				<script type="text/javascript">
 		google.load("visualization", "1.1", {
@@ -62,10 +62,10 @@
 			});
 			
 			data.addRows([ [ 'Pollen', parseInt('${pollen.pollenBar[0]}') , '' ],
-					[ 'Humidity', parseInt('${current.humidityBar}'), '' ], 
-					[ 'Temp', parseInt('${current.tempBar}'), '' ],
-					[ 'Pollution', parseInt('${pollution.pollutionBar}'), '' ],
-					[ 'Wind', parseInt('${current.windBar}'), '' ], ]);
+					[ 'Humidity', parseInt('${conditions.humidityBar}'), '' ], 
+					[ 'Temp', parseInt('${conditions.tempBar}'), '' ],
+					[ 'Pollution', parseInt('${pollution.airQualityBar}'), '' ],
+					[ 'Wind', parseInt('${conditions.windBar}'), '' ], ]);
 
 			var view = new google.visualization.DataView(data);
 			view.setColumns([ 0, 1, 1, 2 ]);
