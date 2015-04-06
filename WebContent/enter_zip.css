@@ -18,6 +18,44 @@ div {
 	margin: 0 auto;
 }
 
+.tile{
+    height: 200px;
+    width: 200px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    max-width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    background-size:200px 200px;
+    position: relative;
+    left: -20px;
+}
+
+#asthma {
+	display: inline-block;
+}
+#stargazing {
+	display: inline-block;
+}
+#cycling {
+	display: inline-block;
+}
+
+.caption{
+    background-color: rgba(50,50,50,0.4);
+    overflow: hidden;
+    color: #fff;
+    font-weight: bold;
+    margin: 150px 0px 0px 0px;
+    height: 200px;
+    width: 200px;
+}
+ 
+
+#description{
+    overflow: hidden;
+    margin: 25px 0px 0px 0px;
+}
 body {
 	background: #6ab7d4;
 	text-align: center;
