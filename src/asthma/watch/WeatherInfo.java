@@ -1,6 +1,6 @@
 package asthma.watch;
 
-public class WeatherInfo implements WeatherInterface {
+public class WeatherInfo implements ApiInterface {
 	Current_Observation current_observation;
 	
 	double temp;

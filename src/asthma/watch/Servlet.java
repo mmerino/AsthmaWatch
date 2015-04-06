@@ -38,10 +38,6 @@ public class Servlet extends HttpServlet {
 				aw.setCustomWeather("conditions");
 				aw.setCustomWeather("pollution");
 				// aw.setCustomWeather("forecast");
-				// aw.setWeatherInfo();
-				// aw.setForecastInfo();
-				// aw.setAstronomyInfo();
-				// aw.setPollutionInfo();
 				aw.goToResults();
 			} catch (Exception e) {
 				request.setAttribute("message",
@@ -49,7 +45,6 @@ public class Servlet extends HttpServlet {
 				errorOuput(request, response);
 			}
 		}
-
 	}
 
 	// validate the parameters

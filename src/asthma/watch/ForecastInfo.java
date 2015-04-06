@@ -1,6 +1,6 @@
 package asthma.watch;
 
-public class ForecastInfo implements WeatherInterface {
+public class ForecastInfo implements ApiInterface {
 	Forecast forecast;
 
 	String[] high;

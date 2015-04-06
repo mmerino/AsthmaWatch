@@ -26,11 +26,6 @@ public class AsthmaWatch {
 	public AsthmaWatch() {
 	}
 
-	// protected void setPollenInfo() throws IOException {
-	// URL url = new URL(UrlReference.CLARITIN_URL + zip);
-	// ClaritinApi.fetchPollenInfo(request, response, url);
-	// }
-
 	protected void setCustomWeather(String weatherType) throws IOException {
 		// TODO Add guard clause for invalid weatherType parameters
 		URL url = new URL("http://www.google.com");
@@ -50,39 +45,9 @@ public class AsthmaWatch {
 			break;
 		}
 
-//		if (weatherType.equals("conditions") || weatherType.equals("forecast")
-//				|| weatherType.equals("astronomy")) {
-//			url = new URL(UrlReference.WU_URL + weatherType + "/q/" + zip
-//					+ ".json");
-//		} else if (weatherType.equals("pollution")) {
-//			url = new URL(UrlReference.EPA_URL + zip);
-//		} else if (weatherType.equals("pollen")) {
-//			url = new URL(UrlReference.CLARITIN_URL + zip);
-//		}
-
-		WeatherUndergroundApi.fetchWeatherInformation(request, response,
+		ApiAccess.fetchWeatherInformation(request, response,
 				weatherType, url);
 	}
-
-	// protected void setWeatherInfo() throws IOException {
-	// URL url = new URL(UrlReference.WU_URL + "conditions/q/" + zip + ".json");
-	// WeatherUndergroundApi.fetchWeatherInfo(request, response, url);
-	// }
-	//
-	// protected void setForecastInfo() throws IOException {
-	// URL url = new URL(UrlReference.WU_URL + "forecast/q/" + zip + ".json");
-	// WeatherUndergroundApi.fetchForecastInfo(request, response, url);
-	// }
-	//
-	// protected void setAstronomyInfo() throws IOException {
-	// URL url = new URL(UrlReference.WU_URL + "astronomy/q/" + zip + ".json");
-	// WeatherUndergroundApi.fetchAstronomyInfo(request, response, url);
-	// }
-	//
-	// protected void setPollutionInfo() throws IOException {
-	// URL url = new URL(UrlReference.EPA_URL + zip);
-	// EpaApi.fetchPollutionInfo(request, response, url);
-	// }
 
 	protected void goToResults() throws ServletException, IOException {
 		request.getRequestDispatcher("displayResults.jsp").forward(request,

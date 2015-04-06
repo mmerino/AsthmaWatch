@@ -1,6 +1,6 @@
 package asthma.watch;
 
-public class PollenInfo implements WeatherInterface {
+public class PollenInfo implements ApiInterface {
 	PollenForecast pollenForecast;
 	
 	double[] forecast;

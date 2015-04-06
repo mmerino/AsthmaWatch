@@ -1,6 +1,6 @@
 package asthma.watch;
 
-public class PollutionInfo implements WeatherInterface {
+public class PollutionInfo implements ApiInterface {
 	Category Category;
 	
 	double airQualityIndex;

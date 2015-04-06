@@ -1,6 +1,6 @@
 package asthma.watch;
 
-public class AstronomyInfo implements WeatherInterface {
+public class AstronomyInfo implements ApiInterface {
 	Moon_Phase moon_phase;
 	
 	String percentIlluminated;

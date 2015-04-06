@@ -1,5 +1,5 @@
 package asthma.watch;
 
-public interface WeatherInterface {
+public interface ApiInterface {
 	public void setAttributes();
 }
