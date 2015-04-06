@@ -26,23 +26,24 @@ public class AsthmaWatch {
 	public AsthmaWatch() {
 	}
 
-	protected void setCustomWeather(String weatherType) throws IOException {
-		// TODO Add guard clause for invalid weatherType parameters
+	protected void fetchWeatherData(String weatherType) throws IOException, ServletException {
 		URL url = new URL("http://www.google.com");
 
 		switch (weatherType) {
 		case "conditions":
 		case "forecast":
 		case "astronomy":
-			url = new URL(UrlReference.WU_URL + weatherType + "/q/" + zip
+			url = new URL(ConstantValues.WU_URL + weatherType + "/q/" + zip
 					+ ".json");
 			break;
 		case "pollution":
-			url = new URL(UrlReference.EPA_URL + zip);
+			url = new URL(ConstantValues.EPA_URL + zip);
 			break;
 		case "pollen":
-			url = new URL(UrlReference.CLARITIN_URL + zip);
+			url = new URL(ConstantValues.CLARITIN_URL + zip);
 			break;
+		default:
+			// TODO exception if weatherType not valid
 		}
 
 		ApiAccess.fetchWeatherInformation(request, response,

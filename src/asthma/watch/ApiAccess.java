@@ -3,6 +3,7 @@ package asthma.watch;
 import java.io.IOException;
 import java.net.URL;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,7 +15,7 @@ public class ApiAccess {
 
 	protected static void fetchWeatherInformation(HttpServletRequest request,
 			HttpServletResponse response, String weatherType, URL url)
-			throws IOException {
+			throws ServletException, IOException {
 		String json = AsthmaWatch.getJson(url);
 		Gson gson = new GsonBuilder().create();
 		ApiInterface weatherInfo;
@@ -45,9 +46,16 @@ public class ApiAccess {
 			break;
 		default:
 			weatherInfo = new WeatherInfo();
-			// TODO error guard clause
+			invalidWeatherType(request, response);
 		}
 		weatherInfo.setAttributes();
 		request.setAttribute(weatherType, weatherInfo);
+	}
+	
+	protected static void invalidWeatherType(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException  {
+		request.setAttribute("message", "Invalid API call.");
+		request.getRequestDispatcher("displayResults.jsp").forward(request,
+				response);
 	}
 }
