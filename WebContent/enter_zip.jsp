@@ -20,24 +20,26 @@
 					type="submit" value="Submit">
 			</form>
 			<div class="tile" id="asthma" style="background:url(‘Pic.jpg'); background-size:200px 200px" >
-      <div class="caption" onclick="alert('Hi!');" >
-            <p>Some caption</p>
+
+      <div class="caption" onclick=;>
+            <p>Asthma</p>
             <p id="description">Some lengthy description that may potentially overflow into two lines</p>
        </div>    
 </div>
 	<div class="tile" id ="stargazing" style="background:url(‘Pic.jpg'); background-size:200px 200px" >
       <div class="caption" onclick="alert('Hi!');" >
-            <p>Some caption</p>
+            <p>Stargazing</p>
             <p id="description">Some lengthy description that may potentially overflow into two lines</p>
        </div>
        
        </div>
-       <div class="tile" id =" cycling" style="background:url(‘Pic.jpg'); background-size:200px 200px" >
+       <div class="tile" id ="cycling" style="background:url(‘Pic.jpg'); background-size:200px 200px" >
       <div class="caption" onclick="alert('Hi!');" >
-            <p>Some caption</p>
+            <p>Cycling</p>
             <p id="description">Some lengthy description that may potentially overflow into two lines</p>
        </div>
        </div>
+       
 			<div id="background-wrap">
 				<div class="x1">
 					<div class="cloud"></div>

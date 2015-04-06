@@ -16,8 +16,8 @@ div {
 #columnchart_material {
 	display: block;
 	margin: 0 auto;
-}
 
+}
 .tile{
     height: 200px;
     width: 200px;
@@ -29,16 +29,8 @@ div {
     background-size:200px 200px;
     position: relative;
     left: -20px;
-}
+    display: inline-block;
 
-#asthma {
-	display: inline-block;
-}
-#stargazing {
-	display: inline-block;
-}
-#cycling {
-	display: inline-block;
 }
 
 .caption{
@@ -50,7 +42,7 @@ div {
     height: 200px;
     width: 200px;
 }
- 
+
 
 #description{
     overflow: hidden;
