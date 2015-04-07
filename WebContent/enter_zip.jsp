@@ -21,15 +21,15 @@
 			</form>
 			<div class="tile" id="asthma" >
             <p>Asthma</p>
-            <p id="description">Some lengthy description that may potentially overflow into two lines</p>
+            <img src="images/inhalermilhouse.png">
        </div>   
 	<div class="tile" id ="stargazing" >
             <p>Stargazing</p>
-            <p id="description">Some lengthy description that may potentially overflow into two lines</p>
+            <img src="images/hubble.png">
        </div>
        <div class="tile" id ="cycling" >
             <p>Cycling</p>
-            <p id="description">Some lengthy description that may potentially overflow into two lines</p>
+             <img src="images/oldbike.png">
        </div>
        
 			<div id="background-wrap">
