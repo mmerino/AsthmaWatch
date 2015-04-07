@@ -19,23 +19,17 @@
 					name="zip" placeholder="enter zip code" required> <input
 					type="submit" value="Submit">
 			</form>
-			<div class="tile" id="asthma" style="background:url(‘Pic.jpg'); background-size:200px 200px" >
-      <div class="caption" onclick=;>
+			<div class="tile" id="asthma" >
             <p>Asthma</p>
             <p id="description">Some lengthy description that may potentially overflow into two lines</p>
-       </div>    
-</div>
-	<div class="tile" id ="stargazing" style="background:url(‘Pic.jpg'); background-size:200px 200px" >
-      <div class="caption" onclick="alert('Hi!');" >
+       </div>   
+	<div class="tile" id ="stargazing" >
             <p>Stargazing</p>
             <p id="description">Some lengthy description that may potentially overflow into two lines</p>
        </div>
-  </div>
-       <div class="tile" id ="cycling" style="background:url(‘Pic.jpg'); background-size:200px 200px" >
-      <div class="caption" onclick="alert('Hi!');" >
+       <div class="tile" id ="cycling" >
             <p>Cycling</p>
             <p id="description">Some lengthy description that may potentially overflow into two lines</p>
-       </div>
        </div>
        
 			<div id="background-wrap">
