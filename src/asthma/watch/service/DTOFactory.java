@@ -3,7 +3,6 @@ package asthma.watch.service;
 import java.io.IOException;
 import java.net.URL;
 
-import asthma.watch.JsonDAO;
 import asthma.watch.model.AstronomyDTO;
 import asthma.watch.model.ForecastDTO;
 import asthma.watch.model.PollenDTO;

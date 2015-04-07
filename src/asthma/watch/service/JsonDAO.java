@@ -1,4 +1,4 @@
-package asthma.watch;
+package asthma.watch.service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,7 +8,6 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 import asthma.watch.model.WeatherData;
-import asthma.watch.service.DTOFactory;
 
 public class JsonDAO {
 	String weatherType;
