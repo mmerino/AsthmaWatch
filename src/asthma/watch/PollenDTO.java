@@ -1,6 +1,6 @@
 package asthma.watch;
 
-public class PollenDAO implements DAOInterface {
+public class PollenDTO implements DAOInterface {
 	PollenForecast pollenForecast;
 	
 	double[] forecast;

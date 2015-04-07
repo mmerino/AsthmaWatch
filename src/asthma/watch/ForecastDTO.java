@@ -1,6 +1,6 @@
 package asthma.watch;
 
-public class ForecastDAO implements DAOInterface {
+public class ForecastDTO implements DAOInterface {
 	Forecast forecast;
 
 	String[] high;

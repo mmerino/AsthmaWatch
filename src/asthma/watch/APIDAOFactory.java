@@ -1,7 +1,11 @@
 package asthma.watch;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,43 +17,55 @@ import com.google.gson.JsonParser;
 
 public class APIDAOFactory {
 
-	protected static void fetchWeatherInformation(HttpServletRequest request,
-			HttpServletResponse response, String weatherType, URL url)
+	protected static DAOInterface fetchWeatherInformation(String weatherType, URL url)
 			throws ServletException, IOException {
-		String json = AsthmaWatch.getJson(url);
+		String json = getJson(url);
 		Gson gson = new GsonBuilder().create();
 		DAOInterface weatherInfo;
 		switch (weatherType) {
 		case "conditions":
-			weatherInfo = new WeatherDAO();
-			weatherInfo = gson.fromJson(json, WeatherDAO.class);
+			weatherInfo = new WeatherDTO();
+			weatherInfo = gson.fromJson(json, WeatherDTO.class);
 			break;
 		case "forecast":
-			weatherInfo = new ForecastDAO();
-			weatherInfo = gson.fromJson(json, ForecastDAO.class);
+			weatherInfo = new ForecastDTO();
+			weatherInfo = gson.fromJson(json, ForecastDTO.class);
 			break;
 		case "astronomy":
 			weatherInfo = new AstronomyInfo();
 			weatherInfo = gson.fromJson(json, AstronomyInfo.class);
 			break;
 		case "pollution":
-			weatherInfo = new PollutionDAO();
+			weatherInfo = new PollutionDTO();
 			JsonParser parser = new JsonParser();
 			json = parser.parse(json).getAsJsonArray().get(0).toString();
-			weatherInfo = gson.fromJson(json, PollutionDAO.class);
+			weatherInfo = gson.fromJson(json, PollutionDTO.class);
 			break;
 		case "pollen":
-			weatherInfo = new PollenDAO();
+			weatherInfo = new PollenDTO();
 			json = json.replaceAll("\\\\", "");
 			json = json.substring(1, json.length() - 1);
-			weatherInfo = gson.fromJson(json, PollenDAO.class);
+			weatherInfo = gson.fromJson(json, PollenDTO.class);
 			break;
 		default:
-			weatherInfo = new WeatherDAO();
-			invalidWeatherType(request, response);
+			weatherInfo = new WeatherDTO();
+//			invalidWeatherType(request, response);
 		}
 		weatherInfo.setAttributes();
-		request.setAttribute(weatherType, weatherInfo);
+		return weatherInfo;
+	}
+	
+	protected static String getJson(URL url) throws IOException {
+		InputStream input = url.openStream();
+		BufferedReader buffer = new BufferedReader(new InputStreamReader(input,
+				StandardCharsets.UTF_8));
+		String lines;
+		StringBuilder json = new StringBuilder();
+		while ((lines = buffer.readLine()) != null) {
+			json.append(lines);
+		}
+		buffer.close();
+		return json.toString();
 	}
 	
 	protected static void invalidWeatherType(HttpServletRequest request,

@@ -1,6 +1,6 @@
 package asthma.watch;
 
-public class PollutionDAO implements DAOInterface {
+public class PollutionDTO implements DAOInterface {
 	Category Category;
 	
 	double airQualityIndex;
