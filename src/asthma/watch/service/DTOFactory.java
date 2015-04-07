@@ -1,7 +1,6 @@
 package asthma.watch.service;
 
 import java.io.IOException;
-import java.net.URL;
 
 import asthma.watch.model.AstronomyDTO;
 import asthma.watch.model.ForecastDTO;

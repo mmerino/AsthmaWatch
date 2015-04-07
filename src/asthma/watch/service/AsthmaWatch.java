@@ -1,7 +1,5 @@
 package asthma.watch.service;
 
-import asthma.watch.*;
-
 import java.io.IOException;
 import java.net.URL;
 

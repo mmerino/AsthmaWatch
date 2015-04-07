@@ -38,9 +38,8 @@ public class AsthmaWatchTest {
 	HttpServletResponse response = mock(HttpServletResponse.class);
 	String zip = "48145";
 
-	// TODO change primaryObject to new name for primary object
 	@Test
-	public void primaryObjectConstructorTest() throws Exception {
+	public void primaryObjectConstructorTest() {
 		AsthmaWatch aw = new AsthmaWatch(zip);
 	}
 
@@ -79,7 +78,6 @@ public class AsthmaWatchTest {
 		String expected = "{  }";
 	}
 
-	// TODO Fix all of the set attribute tests
 	@Test
 	public void populatedJsonSetsAttributeForCurrentConditions()
 			throws Exception {
@@ -91,8 +89,8 @@ public class AsthmaWatchTest {
 		expected.setAttributes();
 
 		WeatherDTO actual = new WeatherDTO();
-		actual = (WeatherDTO) DTOFactory.fetchWeatherInformation(
-				"conditions", json);
+		actual = (WeatherDTO) DTOFactory.fetchWeatherInformation("conditions",
+				json);
 		actual.setAttributes();
 
 		assertEquals(expected.getTemp(), actual.getTemp(), 1e-5);
@@ -103,6 +101,9 @@ public class AsthmaWatchTest {
 		assertEquals(expected.getWindDescription(), actual.getWindDescription());
 		assertEquals(expected.getWindDirection(), actual.getWindDirection());
 		assertEquals(expected.getWindSpeed(), actual.getWindSpeed(), 1e-5);
+		assertEquals(expected.getTempBar(), actual.getTempBar(), 1e-5);
+		assertEquals(expected.getHumidityBar(), actual.getHumidityBar(),1e-5);
+		assertEquals(expected.getWindBar(), actual.getWindBar(),1e-5);
 	}
 
 	@Test
@@ -115,8 +116,8 @@ public class AsthmaWatchTest {
 		expected.setAttributes();
 
 		ForecastDTO actual = new ForecastDTO();
-		actual = (ForecastDTO) DTOFactory.fetchWeatherInformation(
-				"forecast", json);
+		actual = (ForecastDTO) DTOFactory.fetchWeatherInformation("forecast",
+				json);
 		actual.setAttributes();
 
 		assertArrayEquals(expected.getAveHumidity(), actual.getAveHumidity(),
@@ -138,120 +139,58 @@ public class AsthmaWatchTest {
 		expected.setAttributes();
 
 		AstronomyDTO actual = new AstronomyDTO();
-		actual = (AstronomyDTO) DTOFactory.fetchWeatherInformation(
-				"astronomy", json);
+		actual = (AstronomyDTO) DTOFactory.fetchWeatherInformation("astronomy",
+				json);
 		actual.setAttributes();
 
 		assertEquals(expected.getPercentIlluminated(),
 				actual.getPercentIlluminated());
 		assertEquals(expected.getPhaseofMoon(), actual.getPhaseofMoon());
-
 	}
 
-	@Test
-	public void populatedJsonSetsAttributeForPollution() throws Exception {
-		String json = ConstantValues.POLLUTION_TEST;
-
-		Gson gson = new GsonBuilder().create();
-		PollutionDTO expected = new PollutionDTO();
-		expected = gson.fromJson(json, PollutionDTO.class);
-		expected.setAttributes();
-
-		PollutionDTO actual = new PollutionDTO();
-		actual = (PollutionDTO) DTOFactory.fetchWeatherInformation(
-				"pollution", json);
-		actual.setAttributes();
-
-		assertEquals(expected.getAirQualityIndex(),
-				actual.getAirQualityIndex(), 1e-5);
-	}
+	// TODO insert pollution json string in constants
+//	@Test
+//	public void populatedJsonSetsAttributeForPollution() throws Exception {
+//		String json = ConstantValues.POLLUTION_TEST;
+//
+//		Gson gson = new GsonBuilder().create();
+//		PollutionDTO expected = new PollutionDTO();
+//		expected = gson.fromJson(json, PollutionDTO.class);
+//		expected.setAttributes();
+//
+//		PollutionDTO actual = new PollutionDTO();
+//		actual = (PollutionDTO) DTOFactory.fetchWeatherInformation("pollution",
+//				json);
+//		actual.setAttributes();
+//
+//		assertEquals(expected.getAirQualityIndex(),
+//				actual.getAirQualityIndex(), 1e-5);
+//		assertEquals(expected.getAirQualityBar(), actual.getAirQualityBar());
+//	}
 
 	@Test
 	public void populatedJsonSetsAttributeForPollen() throws Exception {
-		String json = "\"{\\\"pollenForecast\\\":{\\\"forecast\\\":[1.0,2.0,3.0,4.0],\\\"pp\\\":\\\"Treeant.\\\"}}\"";
-		URL url = getMockUrlContents(json);
-		WeatherData weatherInfo = DTOFactory.fetchWeatherInformation(
-				"pollen", json);
+		String json = ConstantValues.POLLEN_TEST;
+
+		Gson gson = new GsonBuilder().create();
+		PollenDTO expected = new PollenDTO();
+		expected = gson.fromJson(json, PollenDTO.class);
+		expected.setAttributes();
+
+		PollenDTO actual = new PollenDTO();
+		actual = (PollenDTO) DTOFactory.fetchWeatherInformation("pollen", json);
+		actual.setAttributes();
+
+		assertEquals(expected.getPollenCount(), actual.getPollenCount());
+		assertEquals(expected.getPredominantPollen(),
+				actual.getPredominantPollen());
+		assertEquals(expected.getPollenBar(), actual.getPollenBar());
 	}
 
 	@Test
 	public void populatedJsonReturnsJsonString() throws Exception {
 		String expected = "{\"current_observation\":{\"relative_humidity\": \"50%\"}}";
 		URL url = getMockUrlContents(expected);
-	}
-
-	@Test
-	public void testConditionsJsonObjectPopulated() {
-		String json = ConstantValues.CONDITIONS_TEST;
-		Gson gson = new GsonBuilder().create();
-		WeatherDTO weatherInfo = new WeatherDTO();
-		weatherInfo = gson.fromJson(json, WeatherDTO.class);
-		weatherInfo.setAttributes();
-		assertEquals(weatherInfo.getHumidity(), 65, 1e-5);
-		assertEquals(weatherInfo.getHeatIndex(), "NA");
-		assertEquals(weatherInfo.getPressureTrend(), "+");
-		assertEquals(weatherInfo.getTemp(), 66.3, 1e-5);
-		assertEquals(weatherInfo.getUv(), 5, 1e-5);
-		assertEquals(weatherInfo.getWindDescription(),
-				"From the NNW at 22.0 MPH Gusting to 28.0 MPH");
-		assertEquals(weatherInfo.getWindDirection(), "NNW");
-		assertEquals(weatherInfo.getWindSpeed(), 22.0, 1e-5);
-	}
-
-	// TODO Finish this test
-	@Test
-	public void testForecastJsonObjectPopulated() {
-		String json = ConstantValues.FORECAST_TEST;
-		Gson gson = new GsonBuilder().create();
-		ForecastDTO weatherInfo = new ForecastDTO();
-		weatherInfo = gson.fromJson(json, ForecastDTO.class);
-		weatherInfo.setAttributes();
-		String[] actualHigh = { "72", "72", "58" };
-		String[] actualLow = { "54", "54", "52" };
-		long[] actualWindSpeed = { 9, 12, 10 };
-		String[] actualConditions = { "Partly Cloudy", "Partly Cloudy", "Fog" };
-		double[] actualHumdity = { 70.0, 80.0, 79.0 };
-		String[] actualIcon = {
-				"http://icons-ak.wxug.com/i/c/k/partlycloudy.gif",
-				"http://icons-ak.wxug.com/i/c/k/partlycloudy.gif",
-				"http://icons-ak.wxug.com/i/c/k/partlycloudy.gif" };
-		assertArrayEquals(weatherInfo.getHigh(), actualHigh);
-		assertArrayEquals(weatherInfo.getLow(), actualLow);
-		assertArrayEquals(weatherInfo.getAveWindSpeed(), actualWindSpeed);
-		assertArrayEquals(weatherInfo.getConditions(), actualConditions);
-		assertArrayEquals(weatherInfo.getAveHumidity(), actualHumdity, 1e-5);
-		assertArrayEquals(weatherInfo.getForecastIcon(), actualIcon);
-	}
-
-	// TODO Finish this test
-	@Test
-	public void testAstronomyJsonObjectPopulated() {
-		String json = ConstantValues.ASTRONOMY_TEST;
-		Gson gson = new GsonBuilder().create();
-		AstronomyDTO weatherInfo = new AstronomyDTO();
-		weatherInfo = gson.fromJson(json, AstronomyDTO.class);
-		weatherInfo.setAttributes();
-		assertEquals(weatherInfo.getPercentIlluminated(), "81");
-	}
-
-	// TODO Finish this test
-	@Test
-	public void testPollenJsonObjectPopulated() {
-		String json = ConstantValues.POLLEN_TEST;
-		Gson gson = new GsonBuilder().create();
-		PollenDTO weatherInfo = new PollenDTO();
-		weatherInfo = gson.fromJson(json, PollenDTO.class);
-		weatherInfo.setAttributes();
-	}
-
-	// TODO Finish this test
-	@Test
-	public void tesPollutionJsonObjectPopulated() {
-		String json = ConstantValues.POLLUTION_TEST;
-		Gson gson = new GsonBuilder().create();
-		PollutionDTO weatherInfo = new PollutionDTO();
-		weatherInfo = gson.fromJson(json, PollutionDTO.class);
-		weatherInfo.setAttributes();
 	}
 
 	public URL getMockUrlContents(String contents) throws Exception {
