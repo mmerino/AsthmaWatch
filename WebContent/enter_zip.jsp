@@ -21,7 +21,7 @@
 			</form>
 			<div class="tile" id="asthma" >
             <p>Asthma</p>
-            <img src="images/inhalermilhouse.png">
+            <img src="images/boyinhaler.png">
        </div>   
 	<div class="tile" id ="stargazing" >
             <p>Stargazing</p>
