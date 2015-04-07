@@ -1,6 +1,7 @@
-package asthma.watch;
+package asthma.watch.model;
 
-public class PollenDTO implements DAOInterface {
+
+public class PollenDTO implements WeatherData {
 	PollenForecast pollenForecast;
 	
 	double[] forecast;

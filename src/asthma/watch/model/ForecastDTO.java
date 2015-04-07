@@ -1,6 +1,7 @@
-package asthma.watch;
+package asthma.watch.model;
 
-public class ForecastDTO implements DAOInterface {
+
+public class ForecastDTO implements WeatherData {
 	Forecast forecast;
 
 	String[] high;

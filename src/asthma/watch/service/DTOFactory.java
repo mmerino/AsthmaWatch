@@ -1,22 +1,25 @@
-package asthma.watch;
+package asthma.watch.service;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
+
+import asthma.watch.JsonDAO;
+import asthma.watch.model.AstronomyDTO;
+import asthma.watch.model.ForecastDTO;
+import asthma.watch.model.PollenDTO;
+import asthma.watch.model.PollutionDTO;
+import asthma.watch.model.WeatherDTO;
+import asthma.watch.model.WeatherData;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
 
-public class APIDAOFactory {
+public class DTOFactory {
 
-	protected static DAOInterface fetchWeatherInformation(String weatherType, URL url) throws IOException {
-		String json = getJson(url);
+	public static WeatherData fetchWeatherInformation(String weatherType, String json) throws IOException {
 		Gson gson = new GsonBuilder().create();
-		DAOInterface weatherInfo;
+		WeatherData weatherInfo;
 		switch (weatherType) {
 		case "conditions":
 			weatherInfo = new WeatherDTO();
@@ -47,18 +50,5 @@ public class APIDAOFactory {
 		}
 		weatherInfo.setAttributes();
 		return weatherInfo;
-	}
-	
-	protected static String getJson(URL url) throws IOException {
-		InputStream input = url.openStream();
-		BufferedReader buffer = new BufferedReader(new InputStreamReader(input,
-				StandardCharsets.UTF_8));
-		String lines;
-		StringBuilder json = new StringBuilder();
-		while ((lines = buffer.readLine()) != null) {
-			json.append(lines);
-		}
-		buffer.close();
-		return json.toString();
 	}
 }

@@ -1,19 +1,24 @@
-package asthma.watch;
+package asthma.watch.service;
+
+import asthma.watch.*;
 
 import java.io.IOException;
 import java.net.URL;
 
+import asthma.watch.model.WeatherData;
+import asthma.watch.util.ConstantValues;
+
 public class AsthmaWatch {
 	String zip;
 
-	AsthmaWatch(String zip) {
+	public AsthmaWatch(String zip) {
 		this.zip = zip;
 	}
 
 	public AsthmaWatch() {
 	}
 
-	protected DAOInterface fetchWeatherData(String weatherType) throws IOException {
+	public WeatherData fetchWeatherData(String weatherType) throws IOException {
 		URL url;
 
 		switch (weatherType) {
@@ -33,6 +38,7 @@ public class AsthmaWatch {
 			url = new URL("http://www.google.com");
 		}
 
-		return APIDAOFactory.fetchWeatherInformation(weatherType, url);
+		JsonDAO jdao = new JsonDAO(weatherType, url);
+		return jdao.getDTO();
 	}
 }

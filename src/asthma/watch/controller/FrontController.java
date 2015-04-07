@@ -1,4 +1,4 @@
-package asthma.watch;
+package asthma.watch.controller;
 
 import java.io.IOException;
 
@@ -7,6 +7,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import asthma.watch.model.WeatherData;
+import asthma.watch.service.AsthmaWatch;
 
 @WebServlet("/asthmawatch")
 public class FrontController extends HttpServlet {
@@ -20,15 +23,15 @@ public class FrontController extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String zip = request.getParameter("zip");
-		String[] weatherType = { "pollen", "conditions", "pollution",
+		String[] weatherTypes = { "pollen", "conditions", "pollution",
 				"forecast" };
 		if (zip == null || zip.isEmpty() || zip.length() < 5)
 			errorOuput(request, response);
 		try {
 			AsthmaWatch aw = new AsthmaWatch(zip);
-			for (String weather : weatherType) {
-				DAOInterface weatherInfo = aw.fetchWeatherData(weather);
-				request.setAttribute(weather, weatherInfo);
+			for (String weatherType : weatherTypes) {
+				WeatherData weatherData = aw.fetchWeatherData(weatherType);
+				request.setAttribute(weatherType, weatherData);
 			}
 		} catch (Exception e) {
 			request.setAttribute("message",

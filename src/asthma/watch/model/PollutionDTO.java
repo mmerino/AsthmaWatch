@@ -1,6 +1,7 @@
-package asthma.watch;
+package asthma.watch.model;
 
-public class PollutionDTO implements DAOInterface {
+
+public class PollutionDTO implements WeatherData {
 	Category Category;
 	
 	double airQualityIndex;

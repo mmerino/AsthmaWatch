@@ -1,8 +1,9 @@
-package asthma.watch;
+package asthma.watch.model;
 
-public class AstronomyDTO implements DAOInterface {
+
+public class AstronomyDTO implements WeatherData {
 	Moon_Phase moon_phase;
-	
+
 	String percentIlluminated;
 	String moonPhase;
 	
