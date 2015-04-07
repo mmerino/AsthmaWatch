@@ -1,6 +1,6 @@
 package asthma.watch;
 
-public class WeatherDAO implements DAOInterface {
+public class WeatherDTO implements DAOInterface {
 	Current_Observation current_observation;
 	
 	double temp;
