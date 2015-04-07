@@ -34,7 +34,7 @@ public class Servlet extends HttpServlet {
 				aw.fetchWeatherData("pollen");
 				aw.fetchWeatherData("conditions");
 				aw.fetchWeatherData("pollution");
-				// aw.setCustomWeather("forecast");
+				aw.fetchWeatherData("forecast");
 				aw.goToResults();
 			} catch (Exception e) {
 				request.setAttribute("message",

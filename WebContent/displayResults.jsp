@@ -45,6 +45,10 @@
 			${conditions.pressureTrend} <br> <label>Pollen Count:</label>
 			${pollen.pollenCount[0]} <br><label>Pollution(Air Quality Index):</label>
 			${pollution.airQualityIndex} <br>
+			<img src = "${forecast.forecastIcon[0]}" alt=  "forecast1">
+			<img src = "${forecast.forecastIcon[1]}" alt = "forecast2">
+			<img src = "${forecast.forecastIcon[2]}" alt = "forecast3">
+			<img src = "${forecast.forecastIcon[3]}" alt = "forecast4">
 			<div>
 				<script type="text/javascript">
 		google.load("visualization", "1.1", {
@@ -66,7 +70,8 @@
 					[ 'Temp', parseInt('${conditions.tempBar}'), '' ],
 					[ 'Pollution', parseInt('${pollution.airQualityBar}'), '' ],
 					[ 'Wind', parseInt('${conditions.windBar}'), '' ], ]);
-
+			
+			
 			var view = new google.visualization.DataView(data);
 			view.setColumns([ 0, 1, 1, 2 ]);
 
