@@ -46,7 +46,7 @@ public class AsthmaWatch {
 			// TODO exception if weatherType not valid
 		}
 
-		ApiAccess.fetchWeatherInformation(request, response,
+		APIDAOFactory.fetchWeatherInformation(request, response,
 				weatherType, url);
 	}
 

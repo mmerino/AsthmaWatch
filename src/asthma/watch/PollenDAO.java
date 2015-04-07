@@ -1,6 +1,6 @@
 package asthma.watch;
 
-public class PollenDAO implements APIDAOFactory {
+public class PollenDAO implements DAOInterface {
 	PollenForecast pollenForecast;
 	
 	double[] forecast;
