@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Field;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLStreamHandler;
@@ -36,35 +37,42 @@ public class AsthmaWatchTest {
 
 	// TODO figure out how to stub out call to ApiAccess and verify URL set
 	// correctly
-	// @Test
-	// public void primaryObjectSwitchCaseConditions() throws Exception {
-	// AsthmaWatch aw = new AsthmaWatch(request, response, zip);
-	// aw.fetchWeatherData("conditions");
-	// }
-	//
-	// @Test
-	// public void primaryObjectSwitchCaseForecast() throws Exception {
-	// AsthmaWatch aw = new AsthmaWatch(request, response, zip);
-	// aw.fetchWeatherData("forecast");
-	// }
-	//
-	// @Test
-	// public void primaryObjectSwitchCaseAstronomy() throws Exception {
-	// AsthmaWatch aw = new AsthmaWatch(request, response, zip);
-	// aw.fetchWeatherData("astronomy");
-	// }
-	//
-	// @Test
-	// public void primaryObjectSwitchCasePollution() throws Exception {
-	// AsthmaWatch aw = new AsthmaWatch(request, response, zip);
-	// aw.fetchWeatherData("pollution");
-	// }
-	//
-	// @Test
-	// public void primaryObjectSwitchCasePollen() throws Exception {
-	// AsthmaWatch aw = new AsthmaWatch(request, response, zip);
-	// aw.fetchWeatherData("pollen");
-	// }
+//	@Test
+//	public void primaryObjectSwitchCaseConditions() throws Exception {
+//		AsthmaWatch aw = new AsthmaWatch(request, response, zip);
+//		aw.fetchWeatherData("conditions");
+//		Field field = aw.getClass().get
+//        URL actual = (URL) field.get(aw);
+//        URL expected = new URL(ConstantValues.WU_URL + "conditions/q/" + zip);
+//        assertEquals(expected, actual);
+//	}
+
+	@Test
+	public void primaryObjectSwitchCaseConditions() throws Exception {
+		AsthmaWatch aw = new AsthmaWatch(request, response, zip);
+		aw.fetchWeatherData("conditions");
+		String weatherType="conditions";
+		URL actual = new URL(ConstantValues.WU_URL + weatherType + "/q/" + zip
+				+ ".json");
+        URL expected = new URL("http://api.wunderground.com/api/7376ff9876400cb0/conditions/q/48145.json");
+        assertEquals(expected, actual);
+	}
+	
+	public void primaryObjectSwitchCasePollution() throws Exception {
+		AsthmaWatch aw = new AsthmaWatch(request, response, zip);
+		aw.fetchWeatherData("pollution");
+		URL actual = new URL(ConstantValues.EPA_URL + zip);
+		URL expected = new URL("http://www.airnowapi.org//aq/forecast/zipCode/?format=application/json&api_key=D46398E5-2646-4D3B-95A2-A618D3AF3906&zipCode=48145");
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void primaryObjectSwitchCasePollen() throws Exception {
+		AsthmaWatch aw = new AsthmaWatch(request, response, zip);
+//		aw.fetchWeatherData("pollen");
+//		URL expectedurl= new URL("www.stuff.com");
+//		assertEquals(expectedurl, url);
+	}
 
 	@Test
 	public void emptyJsonReturnsInputString() throws Exception {
@@ -122,13 +130,72 @@ public class AsthmaWatchTest {
 		String actual = AsthmaWatch.getJson(url);
 		assertEquals(expected, actual);
 	}
-	
+
 	@Test
-	public void testConditionsDaoPopulated() {
+	public void testConditionsJsonObjectPopulated() {
 		String json = ConstantValues.CONDITIONS_TEST;
 		Gson gson = new GsonBuilder().create();
 		WeatherInfo weatherInfo = new WeatherInfo();
 		weatherInfo = gson.fromJson(json, WeatherInfo.class);
+		weatherInfo.setAttributes();
+		assertEquals(weatherInfo.getHumidity(), 65, 1e-5);
+		assertEquals(weatherInfo.getHeatIndex(), "NA");
+		assertEquals(weatherInfo.getPressureTrend(), "+");
+		assertEquals(weatherInfo.getTemp(), 66.3, 1e-5);
+		assertEquals(weatherInfo.getUv(), 5, 1e-5);
+		assertEquals(weatherInfo.getWindDescription(),
+				"From the NNW at 22.0 MPH Gusting to 28.0 MPH");
+		assertEquals(weatherInfo.getWindDirection(), "NNW");
+		assertEquals(weatherInfo.getWindSpeed(), 22.0, 1e-5);
+	}
+	//TODO Finish this test
+	@Test
+	public void testForecastJsonObjectPopulated() {
+		String json = ConstantValues.FORECAST_TEST;
+		Gson gson = new GsonBuilder().create();
+		ForecastInfo weatherInfo = new ForecastInfo();
+		weatherInfo = gson.fromJson(json, ForecastInfo.class);
+		weatherInfo.setAttributes();
+		String[] actualHigh = {"72","72","58"};
+		String[] actualLow = {"54","54","52"};
+		long[] actualWindSpeed = {};
+		String[] actualConditions = {};
+		double[] actualHumdity = {};
+		String[] actualIcon = {};
+		assertArrayEquals(weatherInfo.getHigh(), actualHigh);
+		assertArrayEquals(weatherInfo.getLow(), actualLow);
+		assertArrayEquals(weatherInfo.getAveWindSpeed(), actualWindSpeed);
+		assertArrayEquals(weatherInfo.getConditions(), actualConditions);
+		assertArrayEquals(weatherInfo.getAveHumidity(), actualHumdity, 1e-5);
+		assertArrayEquals(weatherInfo.getForecastIcon(), actualIcon);
+	}
+	//TODO Finish this test
+	@Test
+	public void testAstronomyJsonObjectPopulated() {
+		String json = ConstantValues.ASTRONOMY_TEST;
+		Gson gson = new GsonBuilder().create();
+		AstronomyInfo weatherInfo = new AstronomyInfo();
+		weatherInfo = gson.fromJson(json, AstronomyInfo.class);
+		weatherInfo.setAttributes();
+		assertEquals(weatherInfo.getPercentIlluminated(),"81");
+	}
+	//TODO Finish this test
+	@Test
+	public void testPollenJsonObjectPopulated() {
+		String json = ConstantValues.POLLEN_TEST;
+		Gson gson = new GsonBuilder().create();
+		PollenInfo weatherInfo = new PollenInfo();
+		weatherInfo = gson.fromJson(json, PollenInfo.class);
+		weatherInfo.setAttributes();
+	}
+	//TODO Finish this test
+	@Test
+	public void tesPollutionJsonObjectPopulated() {
+		String json = ConstantValues.POLLUTION_TEST;
+		Gson gson = new GsonBuilder().create();
+		PollutionInfo weatherInfo = new PollutionInfo();
+		weatherInfo = gson.fromJson(json, PollutionInfo.class);
+		weatherInfo.setAttributes();
 	}
 
 	public URL getMockUrlContents(String contents) throws Exception {

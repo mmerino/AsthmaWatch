@@ -30,7 +30,6 @@ public class Servlet extends HttpServlet {
 				 * alphabetical aggregation. Move getJson class to
 				 * WeatherUndergroundApi?
 				 */
-				// aw.setPollenInfo();
 				aw.fetchWeatherData("pollen");
 				aw.fetchWeatherData("conditions");
 				aw.fetchWeatherData("pollution");
