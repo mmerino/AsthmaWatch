@@ -35,12 +35,12 @@ public class FrontController extends HttpServlet {
 					"There was an error: " + e.getMessage());
 			errorOuput(request, response);
 		}
-		displayResults(request, response);
+		AsthmaResults(request, response);
 	}
 
-	protected void displayResults(HttpServletRequest request,
+	protected void AsthmaResults(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("displayResults.jsp").forward(request,
+		request.getRequestDispatcher("AsthmaResults.jsp").forward(request,
 				response);
 	}
 
