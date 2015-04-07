@@ -1,64 +1,90 @@
 @CHARSET "ISO-8859-1";
-
 h1 {
-	text-align: center;
+    text-align: center;
 }
-
 p {
-	text-align: center;
+    text-align: center;
 }
-
 div {
-	text-align: center;
+    text-align: center;
 }
-
 #columnchart_material {
-	display: block;
-	margin: 0 auto;
+    display: block;
+    margin: 0 auto;
 }
-
 .tile {
-	height: 125px;
-	width: 200px;
-	background-color: blue;
-	max-width: 100%;
-	text-align: center;
-	vertical-align: middle;
-	background-size: 200px 200px;
-	position: relative;
-	display: inline-block;
-	margin-top: 30px;
-	border-radius: 25px;
+    height: 125px;
+    width: 200px;
+    background-color: blue;
+    max-width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    background-size: 200px 200px;
+    position: relative;
+    display: inline-block;
+    margin-top: 30px;
+    border-radius: 25px;
 }
-
 .caption {
-	background-color: rgba(50, 50, 50, 0.4);
-	overflow: hidden;
-	color: #fff;
-	font-weight: bold;
-	margin: 150px 0px 0px 0px;
-	height: 200px;
-	width: 200px;
+    background-color: rgba(50, 50, 50, 0.4);
+    overflow: hidden;
+    color: #fff;
+    font-weight: bold;
+    margin: 150px 0px 0px 0px;
+    height: 200px;
+    width: 200px;
 }
-
 #description {
-	overflow: hidden;
-	margin: 25px 0px 0px 0px;
+    overflow: hidden;
+    margin: 25px 0px 0px 0px;
 }
-
 body {
-	background: #6ab7d4;
-	text-align: center;
+    background: #6ab7d4;
+    text-align: center;
+    color: #333;
+    font-family: Lato, Sans Serif;
+    height: 100vh;
+    margin: 0;
+    padding: 10px;
+    overflow-x: hidden;
+}
+#background-wrap {
+    bottom: 0;
+    left: 0;
+    padding-top: 50px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: -1;
+}
+div.transbox {
+    width: 880px;
+    margin: 0 auto;
+    padding: 10px 40px 10px 40px;
+    background: #ffff;
+    background: rgba(255, 255, 255, .90);
+    position: relative;
+    border-style: double;
+    border-color: dark blue;
+    border-radius: 25px;
+}
+div.transbox p {
+    margin: 5%;
+    font-weight: bold;
+    color: #000000;
+}
+body {
+	background: #00b4ff;
 	color: #333;
-	font-family: Lato, Sans Serif;
+	font: 100% Arial, Sans Serif;
 	height: 100vh;
 	margin: 0;
-	padding: 10px;
+	padding: 0;
 	overflow-x: hidden;
 }
 
 #background-wrap {
-	bottom: 0;
+    bottom: 0;
 	left: 0;
 	padding-top: 50px;
 	position: fixed;
@@ -67,70 +93,42 @@ body {
 	z-index: -1;
 }
 
-div.transbox {
-	width: 880px;
-	margin: 0 auto;
-	padding: 10px 40px 10px 40px;
-	background: #ffff;
-	background: rgba(255, 255, 255, .90);
-	position: relative;
-	border-style: double;
-	border-color: dark blue;
-	border-radius: 25px;
-}
-
-div.transbox p {
-	margin: 5%;
-	font-weight: bold;
-	color: #000000;
-}
-
 /* KEYFRAMES */
-@
--webkit-keyframes animateCloud { 0% {
-	margin-left: -1000px;
+
+@-webkit-keyframes animateCloud {
+    0% {
+        margin-left: -1000px;
+    }
+    100% {
+        margin-left: 100%;
+    }
 }
 
-100%
-{
-margin-left
-:
- 
-100%;
-}
-}
-@
--moz-keyframes animateCloud { 0% {
-	margin-left: -1000px;
+@-moz-keyframes animateCloud {
+    0% {
+        margin-left: -1000px;
+    }
+    100% {
+        margin-left: 100%;
+    }
 }
 
-100%
-{
-margin-left
-:
- 
-100%;
-}
-}
-@
-keyframes animateCloud { 0% {
-	margin-left: -1000px;
-}
-
-100%
-{
-margin-left
-:
- 
-100%;
-}
+@keyframes animateCloud {
+    0% {
+        margin-left: -1000px;
+    }
+    100% {
+        margin-left: 100%;
+    }
 }
 
 /* ANIMATIONS */
+
 .x1 {
 	-webkit-animation: animateCloud 35s linear infinite;
 	-moz-animation: animateCloud 35s linear infinite;
 	animation: animateCloud 35s linear infinite;
+	
 	-webkit-transform: scale(0.65);
 	-moz-transform: scale(0.65);
 	transform: scale(0.65);
@@ -140,6 +138,7 @@ margin-left
 	-webkit-animation: animateCloud 20s linear infinite;
 	-moz-animation: animateCloud 20s linear infinite;
 	animation: animateCloud 20s linear infinite;
+	
 	-webkit-transform: scale(0.3);
 	-moz-transform: scale(0.3);
 	transform: scale(0.3);
@@ -149,6 +148,7 @@ margin-left
 	-webkit-animation: animateCloud 30s linear infinite;
 	-moz-animation: animateCloud 30s linear infinite;
 	animation: animateCloud 30s linear infinite;
+	
 	-webkit-transform: scale(0.5);
 	-moz-transform: scale(0.5);
 	transform: scale(0.5);
@@ -158,6 +158,7 @@ margin-left
 	-webkit-animation: animateCloud 18s linear infinite;
 	-moz-animation: animateCloud 18s linear infinite;
 	animation: animateCloud 18s linear infinite;
+	
 	-webkit-transform: scale(0.4);
 	-moz-transform: scale(0.4);
 	transform: scale(0.4);
@@ -167,36 +168,39 @@ margin-left
 	-webkit-animation: animateCloud 25s linear infinite;
 	-moz-animation: animateCloud 25s linear infinite;
 	animation: animateCloud 25s linear infinite;
+	
 	-webkit-transform: scale(0.55);
 	-moz-transform: scale(0.55);
 	transform: scale(0.55);
 }
 
 /* OBJECTS */
+
 .cloud {
 	background: #fff;
-	background: -moz-linear-gradient(top, #fff 5%, #f1f1f1 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(5%, #fff),
-		color-stop(100%, #f1f1f1));
-	background: -webkit-linear-gradient(top, #fff 5%, #f1f1f1 100%);
-	background: -o-linear-gradient(top, #fff 5%, #f1f1f1 100%);
-	background: -ms-linear-gradient(top, #fff 5%, #f1f1f1 100%);
-	background: linear-gradient(top, #fff 5%, #f1f1f1 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff',
-		endColorstr='#f1f1f1', GradientType=0);
+	background: -moz-linear-gradient(top,  #fff 5%, #f1f1f1 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(5%,#fff), color-stop(100%,#f1f1f1));
+	background: -webkit-linear-gradient(top,  #fff 5%,#f1f1f1 100%);
+	background: -o-linear-gradient(top,  #fff 5%,#f1f1f1 100%);
+	background: -ms-linear-gradient(top,  #fff 5%,#f1f1f1 100%);
+	background: linear-gradient(top,  #fff 5%,#f1f1f1 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff', endColorstr='#f1f1f1',GradientType=0 );
+	
 	-webkit-border-radius: 100px;
 	-moz-border-radius: 100px;
 	border-radius: 100px;
+	
 	-webkit-box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
 	-moz-box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
 	box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
+
 	height: 120px;
 	position: relative;
 	width: 350px;
 }
 
 .cloud:after, .cloud:before {
-	background: #fff;
+    background: #fff;
 	content: '';
 	position: absolute;
 	z-indeX: -1;
@@ -206,6 +210,7 @@ margin-left
 	-webkit-border-radius: 100px;
 	-moz-border-radius: 100px;
 	border-radius: 100px;
+
 	height: 100px;
 	left: 50px;
 	top: -50px;
@@ -216,8 +221,9 @@ margin-left
 	-webkit-border-radius: 200px;
 	-moz-border-radius: 200px;
 	border-radius: 200px;
+
 	width: 180px;
 	height: 180px;
 	right: 50px;
 	top: -90px;
-}
+}}
