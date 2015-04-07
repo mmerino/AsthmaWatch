@@ -18,34 +18,34 @@ public class ApiAccess {
 			throws ServletException, IOException {
 		String json = AsthmaWatch.getJson(url);
 		Gson gson = new GsonBuilder().create();
-		ApiInterface weatherInfo;
+		APIDAOFactory weatherInfo;
 		switch (weatherType) {
 		case "conditions":
-			weatherInfo = new WeatherInfo();
-			weatherInfo = gson.fromJson(json, WeatherInfo.class);
+			weatherInfo = new WeatherDAO();
+			weatherInfo = gson.fromJson(json, WeatherDAO.class);
 			break;
 		case "forecast":
-			weatherInfo = new ForecastInfo();
-			weatherInfo = gson.fromJson(json, ForecastInfo.class);
+			weatherInfo = new ForecastDAO();
+			weatherInfo = gson.fromJson(json, ForecastDAO.class);
 			break;
 		case "astronomy":
 			weatherInfo = new AstronomyInfo();
 			weatherInfo = gson.fromJson(json, AstronomyInfo.class);
 			break;
 		case "pollution":
-			weatherInfo = new PollutionInfo();
+			weatherInfo = new PollutionDAO();
 			JsonParser parser = new JsonParser();
 			json = parser.parse(json).getAsJsonArray().get(0).toString();
-			weatherInfo = gson.fromJson(json, PollutionInfo.class);
+			weatherInfo = gson.fromJson(json, PollutionDAO.class);
 			break;
 		case "pollen":
-			weatherInfo = new PollenInfo();
+			weatherInfo = new PollenDAO();
 			json = json.replaceAll("\\\\", "");
 			json = json.substring(1, json.length() - 1);
-			weatherInfo = gson.fromJson(json, PollenInfo.class);
+			weatherInfo = gson.fromJson(json, PollenDAO.class);
 			break;
 		default:
-			weatherInfo = new WeatherInfo();
+			weatherInfo = new WeatherDAO();
 			invalidWeatherType(request, response);
 		}
 		weatherInfo.setAttributes();

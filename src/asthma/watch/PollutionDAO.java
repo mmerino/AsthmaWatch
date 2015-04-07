@@ -1,6 +1,6 @@
 package asthma.watch;
 
-public class PollutionInfo implements ApiInterface {
+public class PollutionDAO implements APIDAOFactory {
 	Category Category;
 	
 	double airQualityIndex;

@@ -1,5 +1,5 @@
 package asthma.watch;
 
-public interface ApiInterface {
+public interface APIDAOFactory {
 	public void setAttributes();
 }

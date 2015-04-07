@@ -1,6 +1,6 @@
 package asthma.watch;
 
-public class AstronomyInfo implements ApiInterface {
+public class AstronomyInfo implements APIDAOFactory {
 	Moon_Phase moon_phase;
 	
 	String percentIlluminated;

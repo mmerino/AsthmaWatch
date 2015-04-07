@@ -1,6 +1,6 @@
 package asthma.watch;
 
-public class ForecastInfo implements ApiInterface {
+public class ForecastDAO implements APIDAOFactory {
 	Forecast forecast;
 
 	String[] high;

@@ -1,6 +1,6 @@
 package asthma.watch;
 
-public class WeatherInfo implements ApiInterface {
+public class WeatherDAO implements APIDAOFactory {
 	Current_Observation current_observation;
 	
 	double temp;
