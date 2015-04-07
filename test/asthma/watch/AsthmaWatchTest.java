@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Field;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLStreamHandler;
@@ -135,8 +134,8 @@ public class AsthmaWatchTest {
 	public void testConditionsJsonObjectPopulated() {
 		String json = ConstantValues.CONDITIONS_TEST;
 		Gson gson = new GsonBuilder().create();
-		WeatherInfo weatherInfo = new WeatherInfo();
-		weatherInfo = gson.fromJson(json, WeatherInfo.class);
+		WeatherDAO weatherInfo = new WeatherDAO();
+		weatherInfo = gson.fromJson(json, WeatherDAO.class);
 		weatherInfo.setAttributes();
 		assertEquals(weatherInfo.getHumidity(), 65, 1e-5);
 		assertEquals(weatherInfo.getHeatIndex(), "NA");
@@ -153,8 +152,8 @@ public class AsthmaWatchTest {
 	public void testForecastJsonObjectPopulated() {
 		String json = ConstantValues.FORECAST_TEST;
 		Gson gson = new GsonBuilder().create();
-		ForecastInfo weatherInfo = new ForecastInfo();
-		weatherInfo = gson.fromJson(json, ForecastInfo.class);
+		ForecastDAO weatherInfo = new ForecastDAO();
+		weatherInfo = gson.fromJson(json, ForecastDAO.class);
 		weatherInfo.setAttributes();
 		String[] actualHigh = {"72","72","58"};
 		String[] actualLow = {"54","54","52"};
@@ -184,8 +183,8 @@ public class AsthmaWatchTest {
 	public void testPollenJsonObjectPopulated() {
 		String json = ConstantValues.POLLEN_TEST;
 		Gson gson = new GsonBuilder().create();
-		PollenInfo weatherInfo = new PollenInfo();
-		weatherInfo = gson.fromJson(json, PollenInfo.class);
+		PollenDAO weatherInfo = new PollenDAO();
+		weatherInfo = gson.fromJson(json, PollenDAO.class);
 		weatherInfo.setAttributes();
 	}
 	//TODO Finish this test
@@ -193,8 +192,8 @@ public class AsthmaWatchTest {
 	public void tesPollutionJsonObjectPopulated() {
 		String json = ConstantValues.POLLUTION_TEST;
 		Gson gson = new GsonBuilder().create();
-		PollutionInfo weatherInfo = new PollutionInfo();
-		weatherInfo = gson.fromJson(json, PollutionInfo.class);
+		PollutionDAO weatherInfo = new PollutionDAO();
+		weatherInfo = gson.fromJson(json, PollutionDAO.class);
 		weatherInfo.setAttributes();
 	}
 
