@@ -182,8 +182,8 @@ public class AsthmaWatchTest {
 	public void testAstronomyJsonObjectPopulated() {
 		String json = ConstantValues.ASTRONOMY_TEST;
 		Gson gson = new GsonBuilder().create();
-		AstronomyInfo weatherInfo = new AstronomyInfo();
-		weatherInfo = gson.fromJson(json, AstronomyInfo.class);
+		AstronomyDTO weatherInfo = new AstronomyDTO();
+		weatherInfo = gson.fromJson(json, AstronomyDTO.class);
 		weatherInfo.setAttributes();
 		assertEquals(weatherInfo.getPercentIlluminated(), "81");
 	}

@@ -3,8 +3,6 @@ package asthma.watch;
 import java.io.IOException;
 import java.net.URL;
 
-import javax.servlet.ServletException;
-
 public class AsthmaWatch {
 	String zip;
 
@@ -15,7 +13,7 @@ public class AsthmaWatch {
 	public AsthmaWatch() {
 	}
 
-	protected DAOInterface fetchWeatherData(String weatherType) throws IOException, ServletException {
+	protected DAOInterface fetchWeatherData(String weatherType) throws IOException {
 		URL url;
 
 		switch (weatherType) {

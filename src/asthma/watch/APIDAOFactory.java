@@ -7,18 +7,13 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
 
 public class APIDAOFactory {
 
-	protected static DAOInterface fetchWeatherInformation(String weatherType, URL url)
-			throws ServletException, IOException {
+	protected static DAOInterface fetchWeatherInformation(String weatherType, URL url) throws IOException {
 		String json = getJson(url);
 		Gson gson = new GsonBuilder().create();
 		DAOInterface weatherInfo;
@@ -32,8 +27,8 @@ public class APIDAOFactory {
 			weatherInfo = gson.fromJson(json, ForecastDTO.class);
 			break;
 		case "astronomy":
-			weatherInfo = new AstronomyInfo();
-			weatherInfo = gson.fromJson(json, AstronomyInfo.class);
+			weatherInfo = new AstronomyDTO();
+			weatherInfo = gson.fromJson(json, AstronomyDTO.class);
 			break;
 		case "pollution":
 			weatherInfo = new PollutionDTO();
@@ -49,7 +44,6 @@ public class APIDAOFactory {
 			break;
 		default:
 			weatherInfo = new WeatherDTO();
-//			invalidWeatherType(request, response);
 		}
 		weatherInfo.setAttributes();
 		return weatherInfo;
@@ -66,12 +60,5 @@ public class APIDAOFactory {
 		}
 		buffer.close();
 		return json.toString();
-	}
-	
-	protected static void invalidWeatherType(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException  {
-		request.setAttribute("message", "Invalid API call.");
-		request.getRequestDispatcher("displayResults.jsp").forward(request,
-				response);
 	}
 }

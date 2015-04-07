@@ -22,29 +22,28 @@ public class FrontController extends HttpServlet {
 		String zip = request.getParameter("zip");
 		String[] weatherType = { "pollen", "conditions", "pollution",
 				"forecast" };
-		if (zip == null || zip.isEmpty() || zip.length() < 5) {
+		if (zip == null || zip.isEmpty() || zip.length() < 5)
 			errorOuput(request, response);
-		} else {
-			try {
-				AsthmaWatch aw = new AsthmaWatch(zip);
-				for (String weather : weatherType) {
-					DAOInterface weatherInfo = aw.fetchWeatherData(weather);
-					request.setAttribute(weather, weatherInfo);
-				}
-			} catch (Exception e) {
-				request.setAttribute("message",
-						"There was an error: " + e.getMessage());
-				errorOuput(request, response);
+		try {
+			AsthmaWatch aw = new AsthmaWatch(zip);
+			for (String weather : weatherType) {
+				DAOInterface weatherInfo = aw.fetchWeatherData(weather);
+				request.setAttribute(weather, weatherInfo);
 			}
-			displayResults(request, response);
+		} catch (Exception e) {
+			request.setAttribute("message",
+					"There was an error: " + e.getMessage());
+			errorOuput(request, response);
 		}
+		displayResults(request, response);
 	}
 
-	protected void displayResults(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void displayResults(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("displayResults.jsp").forward(request,
 				response);
 	}
-	
+
 	// validate the parameters
 	@Override
 	protected void doGet(HttpServletRequest request,
