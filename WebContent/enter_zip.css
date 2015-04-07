@@ -26,6 +26,11 @@ div {
     border-radius: 25px;
     border: 2px solid black;
 }
+
+button {
+  background-color: transparent;
+  border: none;
+}
 .caption {
     background-color: rgba(50, 50, 50, 0.4);
     overflow: hidden;

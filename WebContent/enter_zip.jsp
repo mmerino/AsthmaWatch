@@ -14,23 +14,30 @@
 			<p>
 				<i>${message}</i>
 			</p>
+			
 			<form action="asthmawatch" method="post">
 				<label class="pad_top">Zip Code</label> <input type="text"
-					name="zip" placeholder="enter zip code" required> <input
-					type="submit" value="Submit">
-			</form>
+					name="zip" placeholder="enter zip code" required> 
+					
+			<button>
 			<div class="tile" id="asthma" >
             <p>Asthma</p>
             <img src="images/boyinhaler.png">
-       </div>   
+       </div>  
+       </button> 
+	<button>
 	<div class="tile" id ="stargazing" >
             <p>Stargazing</p>
             <img src="images/hubble.png">
        </div>
+       </button>
+       <button>
        <div class="tile" id ="cycling" >
             <p>Cycling</p>
              <img src="images/oldbike.png">
        </div>
+       </button>
+       </form>
        
 			<div id="background-wrap">
 				<div class="x1">
@@ -54,6 +61,7 @@
 					<div class="cloud"></div>
 				</div>
 			</div>
+		</div>
 		</div>
 </body>
 </html>
