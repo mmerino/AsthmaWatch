@@ -17,22 +17,24 @@
 					<i>${message}</i>
 				</p>
 				<form action="asthmawatch" method="post">
+					<input type="hidden" name="type" value="asthma">
+
 					<label class="pad_top">Zip Code</label> <input type="text"
-						name="zip" placeholder="enter zip code" required> 
-					<button>
-						<div class="tile" id="asthma" >
+						name="zip" placeholder="enter zip code" required> <br>
+					<button id="stargazing" onClick="document.forms[0].elements['type'].value='asthma'">
+						<div class="tile" >
 							<p>Asthma</p>
 							<img src="images/boyinhaler.png">
 						</div>
 					</button>
-					<button>
-						<div class="tile" id ="stargazing" >
+					<button id="stargazing" onClick="document.forms[0].elements['type'].value='stargazing'">
+						<div class="tile"  >
 							<p>Stargazing</p>
 							<img src="images/hubble.png">
 						</div>
 					</button>
-					<button>
-						<div class="tile" id ="cycling" >
+					<button id="cycling" onClick="document.forms[0].elements['type'].value='cycling'">
+						<div class="tile" >
 							<p>Cycling</p>
 							<img src="images/oldbike.png">
 						</div>
