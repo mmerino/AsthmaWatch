@@ -6,36 +6,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Weather Watch</title>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<link rel="stylesheet" type="text/css" href="displayResults.css">
+<link rel="stylesheet" type="text/css" href="StargazingResults.css">
 <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
 <div class="background">
 		<div class="transbox" class="double">
-
 			<h1>Thank you for using Weather Watch</h1>
 			<div id="background-wrap">
-				<div class="x1">
-					<div class="cloud"></div>
-				</div>
-
-
-				<div class="x2">
-					<div class="cloud"></div>
-				</div>
-
-				<div class="x3">
-					<div class="cloud"></div>
-				</div>
-
-				<div class="x4">
-					<div class="cloud"></div>
-				</div>
-
-				<div class="x5">
-					<div class="cloud"></div>
-				</div>
-			</div>
+			<div class="stars"></div>
+			<div class="twinkling"></div>
+			<div class="clouds"></div>
+		</div>
 <p>Here is your current stargazing information:</p>
 			<label>Percentage of Moon Illuminated:</label>${astronomy.percentIlluminated}<br>
 			<label>Phase of the Moon:</label>${astronomy.moonPhase}<br> 
@@ -45,6 +27,8 @@
 			<img src = "${forecast.forecastIcon[1]}" alt = "forecast2">
 			<img src = "${forecast.forecastIcon[2]}" alt = "forecast3">
 			<img src = "${forecast.forecastIcon[3]}" alt = "forecast4">
-			<div>
+		</div>
+	</div>
+			
 </body>
 </html>
