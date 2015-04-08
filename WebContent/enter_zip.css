@@ -12,11 +12,6 @@ div {
     display: block;
     margin: 0 auto;
 }
-
-img{
-	border-radius: 25px;
-}
-
 .tile {
     height: 170px;
     width: 200px;
