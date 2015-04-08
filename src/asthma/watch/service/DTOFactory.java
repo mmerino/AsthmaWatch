@@ -2,6 +2,9 @@ package asthma.watch.service;
 
 import java.io.IOException;
 
+import javax.activity.InvalidActivityException;
+
+import asthma.watch.InvalidWeatherTypeException;
 import asthma.watch.model.AstronomyDTO;
 import asthma.watch.model.ForecastDTO;
 import asthma.watch.model.PollenDTO;
@@ -15,7 +18,7 @@ import com.google.gson.JsonParser;
 
 public class DTOFactory {
 
-	public static WeatherData fetchWeatherInformation(String weatherType, String json) throws IOException {
+	public static WeatherData fetchWeatherInformation(String weatherType, String json) throws IOException, InvalidWeatherTypeException {
 		Gson gson = new GsonBuilder().create();
 		WeatherData weatherInfo;
 		switch (weatherType) {
@@ -45,6 +48,7 @@ public class DTOFactory {
 			break;
 		default:
 			weatherInfo = new WeatherDTO();
+			throw new InvalidWeatherTypeException(weatherType);
 		}
 		weatherInfo.setAttributes();
 		return weatherInfo;

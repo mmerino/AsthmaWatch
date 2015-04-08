@@ -3,6 +3,8 @@ package asthma.watch.service;
 import java.io.IOException;
 import java.net.URL;
 
+import asthma.watch.APIDownExcpetion;
+import asthma.watch.InvalidWeatherTypeException;
 import asthma.watch.model.WeatherData;
 import asthma.watch.util.ConstantValues;
 
@@ -16,7 +18,7 @@ public class AsthmaWatch {
 	public AsthmaWatch() {
 	}
 
-	public WeatherData fetchWeatherData(String weatherType) throws IOException {
+	public WeatherData fetchWeatherData(String weatherType) throws IOException, APIDownExcpetion, InvalidWeatherTypeException {
 		URL url;
 
 		switch (weatherType) {
@@ -34,6 +36,7 @@ public class AsthmaWatch {
 			break;
 		default:
 			url = new URL("http://www.google.com");
+			throw new InvalidWeatherTypeException(weatherType);
 		}
 
 		JsonDAO jdao = new JsonDAO(weatherType, url);
