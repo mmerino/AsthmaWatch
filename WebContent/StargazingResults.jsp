@@ -41,10 +41,14 @@
 			<label>Phase of the Moon:</label>${astronomy.moonPhase}<br> 
 			<label>Precipitation:</label>${conditions.oneHourPrecip}<br>
 			<label>Pollution(Air Quality Index):</label>${pollution.airQualityIndex} <br>
+			<label>Sunrise:</label>${astronomy.sunrise} <br>
+			<label>Sunset:</label>${astronomy.sunset} <br>
 			<img src = "${forecast.forecastIcon[0]}" alt=  "forecast1">
 			<img src = "${forecast.forecastIcon[1]}" alt = "forecast2">
 			<img src = "${forecast.forecastIcon[2]}" alt = "forecast3">
-			<img src = "${forecast.forecastIcon[3]}" alt = "forecast4">
-			<div>
+			<img src = "${forecast.forecastIcon[3]}" alt = "forecast4"><br>
+			<label>Current Phase:</label><br>
+			<img src="${astronomy.moonPic}"><br>
+		
 </body>
 </html>

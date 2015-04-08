@@ -25,7 +25,7 @@ public class FrontController extends HttpServlet {
 		String zip = request.getParameter("zip");
 		String type = request.getParameter("type");
 		String[] weatherTypes = { "pollen", "conditions", "pollution",
-				"forecast" };
+				"forecast", "astronomy" };
 		if (zip == null || zip.isEmpty() || zip.length() < 5) {
 			errorOuput(request, response);
 		}
