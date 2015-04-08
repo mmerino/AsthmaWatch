@@ -29,6 +29,7 @@ import asthma.watch.util.ConstantValues;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParser;
 
 import static org.mockito.Mockito.*;
 
@@ -150,45 +151,46 @@ public class BusinessDelegateTest {
 		assertEquals(expected.getPhaseofMoon(), actual.getPhaseofMoon());
 	}
 
-// TODO insert pollution json string in constants
-//	@Test
-//	public void populatedJsonSetsAttributeForPollution() throws Exception {
-//		String json = ConstantValues.POLLUTION_TEST;
-//
-//		Gson gson = new GsonBuilder().create();
-//		PollutionDTO expected = new PollutionDTO();
-//		expected = gson.fromJson(json, PollutionDTO.class);
-//		expected.setAttributes();
-//
-//		PollutionDTO actual = new PollutionDTO();
-//		actual = (PollutionDTO) DTOFactory.fetchWeatherInformation("pollution",
-//				json);
-//		actual.setAttributes();
-//
-//		assertEquals(expected.getAirQualityIndex(),
-//				actual.getAirQualityIndex(), 1e-5);
-//		assertEquals(expected.getAirQualityBar(), actual.getAirQualityBar());
-//	}
-// TODO Make this work!
-//	@Test
-//	public void populatedJsonSetsAttributeForPollen() throws Exception {
-//		String json = ConstantValues.POLLEN_TEST;
-//		System.out.println(json);
-//
-//		Gson gson = new GsonBuilder().create();
-//		PollenDTO expected = new PollenDTO();
-//		expected = gson.fromJson(json, PollenDTO.class);
-//		expected.setAttributes();
-//
-//		PollenDTO actual = new PollenDTO();
-//		actual = (PollenDTO) DTOFactory.fetchWeatherInformation("pollen", json);
-//		actual.setAttributes();
-//
-//		assertEquals(expected.getPollenCount(), actual.getPollenCount());
-//		assertEquals(expected.getPredominantPollen(),
-//				actual.getPredominantPollen());
-//		assertEquals(expected.getPollenBar(), actual.getPollenBar());
-//	}
+	@Test
+	public void populatedJsonSetsAttributeForPollution() throws Exception {
+		String json = ConstantValues.POLLUTION_TEST;
+
+		Gson gson = new GsonBuilder().create();
+		PollutionDTO expected = new PollutionDTO();
+		JsonParser parser = new JsonParser();
+		String parsedJson = parser.parse(json).getAsJsonArray().get(0).toString();
+		expected = gson.fromJson(parsedJson, PollutionDTO.class);
+		expected.setAttributes();
+
+		PollutionDTO actual = new PollutionDTO();
+		actual = (PollutionDTO) DTOFactory.fetchWeatherInformation("pollution",
+				json);
+		actual.setAttributes();
+
+		assertEquals(expected.getAirQualityIndex(),
+				actual.getAirQualityIndex(), 1e-5);
+		assertEquals(expected.getAirQualityBar(), actual.getAirQualityBar());
+	}
+
+	@Test
+	public void populatedJsonSetsAttributeForPollen() throws Exception {
+		String json = ConstantValues.POLLEN_TEST;
+
+		Gson gson = new GsonBuilder().create();
+		PollenDTO expected = new PollenDTO();
+		String testjson = json.replaceAll("\\\\", "");
+		testjson = testjson.substring(1, testjson.length() - 1);
+		expected = gson.fromJson(testjson, PollenDTO.class);
+		expected.setAttributes();
+
+		PollenDTO actual = new PollenDTO();
+		actual = (PollenDTO) DTOFactory.fetchWeatherInformation("pollen", json);
+		actual.setAttributes();
+
+		assertArrayEquals(expected.getPollenCount(), actual.getPollenCount(),1e-5);
+		assertEquals(expected.getPredominantPollen(),actual.getPredominantPollen());
+		assertArrayEquals(expected.getPollenBar(), actual.getPollenBar(),1e-5);
+	}
 
 	@Test
 	public void populatedJsonReturnsJsonString() throws Exception {

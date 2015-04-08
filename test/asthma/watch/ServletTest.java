@@ -46,7 +46,7 @@ public class ServletTest {
 	 */
 	@Test
 	public void testDoPostHttpServletRequestHttpServletResponse() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class ServletTest {
 	 */
 	@Test
 	public void testDoGetHttpServletRequestHttpServletResponse() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 }
