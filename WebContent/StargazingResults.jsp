@@ -29,6 +29,5 @@
 			<img src = "${forecast.forecastIcon[3]}" alt = "forecast4">
 		</div>
 	</div>
-			
 </body>
 </html>
