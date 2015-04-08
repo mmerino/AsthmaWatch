@@ -12,10 +12,13 @@ public class WeatherDTO implements WeatherData {
 	String pressureTrend;
 	String heatIndex;
 	String uvIndex;
+	String oneHourPrecip;
 
 	double humidityBar;
 	double windBar;
 	double tempBar;
+	double uvBar;
+	double oneHourPrecipBar;
 	
 	public void setAttributes() {
 		this.temp = current_observation.temp_f;
@@ -26,6 +29,7 @@ public class WeatherDTO implements WeatherData {
 		this.pressureTrend = current_observation.pressure_trend;
 		this.heatIndex = current_observation.heat_index_f;
 		this.uvIndex = current_observation.UV;
+		this.oneHourPrecip = current_observation.precip_1hr_in;
 		setAllBars();
 	}
 	
@@ -33,6 +37,8 @@ public class WeatherDTO implements WeatherData {
 		setTempBar();
 		setHumidityBar();
 		setWindBar();
+		setUvBar();
+		setOneHourPrecipBar();
 	}
 	
 	public void setTempBar() {
@@ -62,6 +68,26 @@ public class WeatherDTO implements WeatherData {
 			windBar = 3.0;
 		} else {
 			windBar = 2.0;
+		}
+	}
+	
+	public void setUvBar() {
+		int uvInt = Integer.parseInt("uvIndex");
+		if (uvInt < 3) {
+			uvBar = 1.0;
+		} else if (uvInt > 7) {
+			uvBar = 3.0;
+		} else {
+			uvBar = 2.0;
+		}
+	}
+	
+	public void setOneHourPrecipBar() {
+		int preciptInt = Integer.parseInt(oneHourPrecip);
+		if (preciptInt > 0) {
+			oneHourPrecipBar = 3.0;
+		} else {
+			oneHourPrecipBar = 1.0;
 		}
 	}
 
@@ -97,6 +123,10 @@ public class WeatherDTO implements WeatherData {
 	public double getUv() {
 		return Double.parseDouble(uvIndex);
 	}
+	
+	public String getOneHourPrecip() {
+		return oneHourPrecip;
+	}
 
 	public double getTempBar() {
 		return tempBar;
@@ -109,6 +139,14 @@ public class WeatherDTO implements WeatherData {
 	public double getWindBar() {
 		return windBar;
 	}
+	
+	public double getUvBar() {
+		return uvBar;
+	}
+	
+	public double getOneHourPrecipBar() {
+		return oneHourPrecipBar;
+	}
 
 	
 	public class Current_Observation {
@@ -120,6 +158,7 @@ public class WeatherDTO implements WeatherData {
 		String pressure_trend;
 		String heat_index_f;
 		String UV;
+		String precip_1hr_in;
 
 		double humidityBar;
 		double windBar;
