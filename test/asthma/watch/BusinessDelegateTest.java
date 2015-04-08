@@ -24,6 +24,7 @@ import asthma.watch.model.WeatherDTO;
 import asthma.watch.model.WeatherData;
 import asthma.watch.service.DTOFactory;
 import asthma.watch.service.BusinessDelegate;
+import asthma.watch.service.JsonDAO;
 import asthma.watch.util.ConstantValues;
 
 import com.google.gson.Gson;
@@ -67,15 +68,16 @@ public class BusinessDelegateTest {
 	@Test
 	public void primaryObjectSwitchCasePollen() throws Exception {
 		BusinessDelegate apiDelegate= new BusinessDelegate(zip);
-		// aw.fetchWeatherData("pollen");
-		// URL expectedurl= new URL("www.stuff.com");
-		// assertEquals(expectedurl, url);
+		 apiDelegate.fetchWeatherData("pollen");
+		 URL url = new URL(ConstantValues.CLARITIN_URL + zip);
+		 URL expectedurl= new URL("http://www.claritin.com/weatherpollenservice/weatherpollenservice.svc/getforecast/48145");
+		 assertEquals(expectedurl, url);
 	}
-// TODO check for APIDownException instead
-	@Test
+	@Test(expected=APIDownException.class)
 	public void emptyJsonReturnsThrowsCustomException() throws Exception {
-		URL url = getMockUrlContents("{  }");
-		String expected = "{  }";
+		URL url = getMockUrlContents("www.fdgsdfhsdh.com/api?fake=true");
+		JsonDAO jsonDAO = new JsonDAO("conditions", url);
+		jsonDAO.getJson(url);
 	}
 
 	@Test

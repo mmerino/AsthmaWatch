@@ -3,7 +3,7 @@ package asthma.watch.service;
 import java.io.IOException;
 import java.net.URL;
 
-import asthma.watch.APIDownExcpetion;
+import asthma.watch.APIDownException;
 import asthma.watch.InvalidWeatherTypeException;
 import asthma.watch.model.WeatherData;
 import asthma.watch.util.ConstantValues;
@@ -18,7 +18,7 @@ public class BusinessDelegate {
 	public BusinessDelegate() {
 	}
 
-	public WeatherData fetchWeatherData(String weatherType) throws IOException, APIDownExcpetion, InvalidWeatherTypeException {
+	public WeatherData fetchWeatherData(String weatherType) throws IOException, APIDownException, InvalidWeatherTypeException {
 		URL url;
 
 		switch (weatherType) {

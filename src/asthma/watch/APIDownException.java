@@ -1,12 +1,12 @@
 package asthma.watch;
 
-public class APIDownExcpetion extends Exception {
+public class APIDownException extends Exception {
 	String weatherType;
 	
-	public APIDownExcpetion() {
+	public APIDownException() {
 		
 	}
-	public APIDownExcpetion(String weatherType) {
+	public APIDownException(String weatherType) {
 		this.weatherType = weatherType;
 	}
 	

@@ -8,7 +8,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 import asthma.watch.model.WeatherData;
-import asthma.watch.APIDownExcpetion;
+import asthma.watch.APIDownException;
 import asthma.watch.InvalidWeatherTypeException;
 
 public class JsonDAO {
@@ -20,12 +20,12 @@ public class JsonDAO {
 		this.url = url;
 	}
 	
-	public WeatherData getDTO() throws IOException, APIDownExcpetion, InvalidWeatherTypeException {
+	public WeatherData getDTO() throws IOException, APIDownException, InvalidWeatherTypeException {
 		String json = getJson(url);
 		return DTOFactory.fetchWeatherInformation(weatherType, json);
 	}
 
-	public String getJson(URL url) throws IOException, APIDownExcpetion {
+	public String getJson(URL url) throws IOException, APIDownException {
 		InputStream input = url.openStream();
 		BufferedReader buffer = new BufferedReader(new InputStreamReader(input,
 				StandardCharsets.UTF_8));
@@ -36,7 +36,7 @@ public class JsonDAO {
 		}
 		buffer.close();
 		if (json == null || json.equals("")) {
-			throw new APIDownExcpetion(weatherType);
+			throw new APIDownException(weatherType);
 		}
 		return json.toString();
 	}
