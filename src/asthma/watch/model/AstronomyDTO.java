@@ -22,7 +22,7 @@ public class AstronomyDTO implements WeatherData {
 		return percentIlluminated;
 	}
 
-	public String getPhaseofMoon() {
+	public String getMoonPhase() {
 		return moonPhase;
 	}
 
@@ -40,15 +40,15 @@ public class AstronomyDTO implements WeatherData {
 
 	public void setMoonPic() {
 		if (moonPhase.contains("New")) {
-			moonPic = "images/moon-new.png";
+			moonPic = "images/newmoon.png";
 		} else if (moonPhase.contains("Gibbous")) {
-			moonPic = "images/moon-gibbous.png";
+			moonPic = "images/gibbousmoon.png";
 		} else if (moonPhase.contains("Crescent")) {
-			moonPic = "images/moon-crescent.png";
+			moonPic = "images/crescentmoon.png";
 		} else if (moonPhase.contains("Full")) {
-			moonPic = "images/moon-full.png";
+			moonPic = "images/fullmoon.png";
 		} else if (moonPhase.contains("Half")) {
-			moonPic = "images/moon-half.png";
+			moonPic = "images/halfmoon.png";
 		}
 	}
 
