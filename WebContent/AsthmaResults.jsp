@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Asthma Watch</title>
+<title>Weather Watch</title>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <link rel="stylesheet" type="text/css" href="displayResults.css">
 <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
@@ -13,7 +13,7 @@
 	<div class="background">
 		<div class="transbox" class="double">
 
-			<h1>Thank you for using AsthmaWatch</h1>
+			<h1>Thank you for using Weather Watch</h1>
 			<div id="background-wrap">
 				<div class="x1">
 					<div class="cloud"></div>

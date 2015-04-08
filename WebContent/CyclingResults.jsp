@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Asthma Watch</title>
+<title>Weather Watch</title>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <link rel="stylesheet" type="text/css" href="displayResults.css">
 <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
@@ -15,7 +15,7 @@
 	<div class="background">
 		<div class="transbox" class="double">
 
-			<h1>Thank you for using AsthmaWatch</h1>
+			<h1>Thank you for using Weather Watch</h1>
 			<div id="background-wrap">
 				<div class="x1">
 					<div class="cloud"></div>
@@ -41,7 +41,7 @@
 <p>Here is your current cycling information:</p>
 			<label>Wind Description:</label>${conditions.windDescription}<br> 
 			<label>Heat Index:</label>${conditions.temp}<br> 
-			<label>UV Index:</label>${conditions.uv}<br>
+			<label>UV Index:</label>${conditions.uvIndex}<br>
 			<label>Precipitation:</label>${conditions.oneHourPrecip}<br> 
 			<label>Pollen Count:</label>${pollen.pollenCount[0]}<br>
 			<img src = "${forecast.forecastIcon[0]}" alt=  "forecast1">
@@ -67,7 +67,7 @@
 			});
 			
 			data.addRows([ [ 'Pollen', parseInt('${pollen.pollenBar[0]}') , '' ],
-					[ 'Precipitation', parseInt('${conditions.oneHourPrecipBar}'), '' ], 
+					[ 'Precipitation', parseInt('${conditions.oneHourPrecipBar}'), '' ],
 					[ 'Temp', parseInt('${conditions.tempBar}'), '' ],
 					[ 'UV', parseInt('${conditions.uvBar}'), '' ],
 					[ 'Wind', parseInt('${conditions.windBar}'), '' ], ]);

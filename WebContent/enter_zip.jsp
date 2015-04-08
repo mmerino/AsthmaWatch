@@ -4,7 +4,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<link rel="stylesheet" type="text/css" href="enter_zip.css">
 		<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-		<title>Asthma Watch</title>
+		<title>Weather Watch</title>
 	</head>
 	<body>
 		<div class="background">
