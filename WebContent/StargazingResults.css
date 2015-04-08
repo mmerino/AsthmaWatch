@@ -41,7 +41,7 @@ div.transbox {
     width: 880px;
     margin: 0 auto;
     padding: 10px 40px 10px 40px;
-    background: #ffff;
+    background: white;
     background: rgba(255, 255, 255, .90);
     position: relative;
     border-style: double;
