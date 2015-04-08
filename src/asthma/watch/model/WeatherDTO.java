@@ -11,7 +11,7 @@ public class WeatherDTO implements WeatherData {
 	double windSpeed;
 	String pressureTrend;
 	String heatIndex;
-	String uvIndex;
+	String uv;
 	String oneHourPrecip;
 
 	double humidityBar;
@@ -28,7 +28,7 @@ public class WeatherDTO implements WeatherData {
 		this.windSpeed = current_observation.wind_mph;
 		this.pressureTrend = current_observation.pressure_trend;
 		this.heatIndex = current_observation.heat_index_f;
-		this.uvIndex = current_observation.UV;
+		this.uv = current_observation.UV;
 		this.oneHourPrecip = current_observation.precip_1hr_in;
 		setAllBars();
 	}
@@ -120,8 +120,8 @@ public class WeatherDTO implements WeatherData {
 		return heatIndex;
 	}
 
-	public double getUv() {
-		return Double.parseDouble(uvIndex);
+	public double getUvIndex() {
+		return Double.parseDouble(uv);
 	}
 	
 	public String getOneHourPrecip() {
@@ -159,9 +159,5 @@ public class WeatherDTO implements WeatherData {
 		String heat_index_f;
 		String UV;
 		String precip_1hr_in;
-
-		double humidityBar;
-		double windBar;
-		double tempBar;
 	}
 }
