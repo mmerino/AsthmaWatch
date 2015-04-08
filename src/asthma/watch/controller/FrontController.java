@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import asthma.watch.APIDownException;
+import asthma.watch.InvalidWeatherTypeException;
 import asthma.watch.model.WeatherData;
 import asthma.watch.service.BusinessDelegate;
 
@@ -27,28 +29,35 @@ public class FrontController extends HttpServlet {
 		String[] weatherTypes = { "pollen", "conditions", "pollution",
 				"forecast", "astronomy" };
 		if (zip == null || zip.isEmpty() || zip.length() < 5) {
-			errorOuput(request, response);
+			errorOutput(request, response);
 		}
-		try {
-			BusinessDelegate apiDelegate = new BusinessDelegate(zip);
-			for (String weatherType : weatherTypes) {
-				WeatherData weatherData = apiDelegate.fetchWeatherData(weatherType);
+		// try {
+		BusinessDelegate apiDelegate = new BusinessDelegate(zip);
+		for (String weatherType : weatherTypes) {
+			WeatherData weatherData;
+			try {
+				weatherData = apiDelegate.fetchWeatherData(weatherType);
 				request.setAttribute(weatherType, weatherData);
+			} catch (APIDownException | InvalidWeatherTypeException e) {
+				// FIXME: handle
 			}
-		} catch (Exception e) {
-			request.setAttribute("message",
-					"There was an error: " + e.getMessage());
-			errorOuput(request, response);
 		}
+		// } catch (Exception e) {
+		// request.setAttribute("message",
+		// "There was an error: " + e.getMessage());
+		// errorOuput(request, response);
+		// }
 
 		dispatchResults(type, request, response);
 	}
 
 	/**
-	 * Determines the page to show the user based on the type query parameter and sends
-	 * it through the servlet dispatcher. Defaults to AsthmaResults on invalid/empty value.
+	 * Determines the page to show the user based on the type query parameter
+	 * and sends it through the servlet dispatcher. Defaults to AsthmaResults on
+	 * invalid/empty value.
 	 * 
-	 * @param type Either "asthma", "stargazing", or "cycling"
+	 * @param type
+	 *            Either "asthma", "stargazing", or "cycling"
 	 * @param request
 	 * @param response
 	 * @throws ServletException
@@ -65,22 +74,25 @@ public class FrontController extends HttpServlet {
 			dispatchAsthmaResults(request, response);
 		}
 	}
-	
+
 	protected void dispatchAsthmaResults(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("AsthmaResults.jsp").forward(request, response);
+		request.getRequestDispatcher("AsthmaResults.jsp").forward(request,
+				response);
 	}
-	
+
 	protected void dispatchCyclingResults(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO: no cycling results page
-		request.getRequestDispatcher("CyclingResults.jsp").forward(request, response);
+		request.getRequestDispatcher("CyclingResults.jsp").forward(request,
+				response);
 	}
-	
+
 	protected void dispatchStargazingResults(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO: this page is just a placeholder right now
-		request.getRequestDispatcher("StargazingResults.jsp").forward(request, response);
+		request.getRequestDispatcher("StargazingResults.jsp").forward(request,
+				response);
 	}
 
 	// validate the parameters
@@ -90,10 +102,11 @@ public class FrontController extends HttpServlet {
 		doPost(request, response);
 	}
 
-	private void errorOuput(HttpServletRequest request,
+	private void errorOutput(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String message = (String) request.getAttribute("message");
 		if (message == null) {
+//			TODO: Pass the error message instead of static line
 			message = "Please fill in the zip code.";
 		}
 

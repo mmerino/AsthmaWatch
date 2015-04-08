@@ -100,7 +100,7 @@ public class BusinessDelegateTest {
 		assertEquals(expected.getHeatIndex(), actual.getHeatIndex());
 		assertEquals(expected.getPressureTrend(), actual.getPressureTrend());
 		assertEquals(expected.getTemp(), actual.getTemp(), 1e-5);
-		assertEquals(expected.getUv(), actual.getUv(), 1e-5);
+		assertEquals(expected.getUvIndex(), actual.getUvIndex(), 1e-5);
 		assertEquals(expected.getWindDescription(), actual.getWindDescription());
 		assertEquals(expected.getWindDirection(), actual.getWindDirection());
 		assertEquals(expected.getWindSpeed(), actual.getWindSpeed(), 1e-5);
@@ -148,7 +148,7 @@ public class BusinessDelegateTest {
 
 		assertEquals(expected.getPercentIlluminated(),
 				actual.getPercentIlluminated());
-		assertEquals(expected.getPhaseofMoon(), actual.getPhaseofMoon());
+		assertEquals(expected.getMoonPhase(), actual.getMoonPhase());
 	}
 
 	@Test
