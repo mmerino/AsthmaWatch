@@ -17,22 +17,22 @@
 			
 			<form action="asthmawatch" method="post">
 				<label class="pad_top">Zip Code</label> <input type="text"
-					name="zip" placeholder="enter zip code" required> 
+					name="zip" placeholder="enter zip code" required><br>
 					
-			<button>
-			<div class="tile" id="asthma" >
+			<button id="asthma">
+			<div class="tile">
             <p>Asthma</p>
             <img src="images/boyinhaler.png">
        </div>  
        </button> 
-	<button>
-	<div class="tile" id ="stargazing" >
+	<button id ="stargazing">
+	<div class="tile">
             <p>Stargazing</p>
             <img src="images/hubble.png">
-       </div>
+       </div id ="cycling" >
        </button>
        <button>
-       <div class="tile" id ="cycling" >
+       <div class="tile">
             <p>Cycling</p>
              <img src="images/oldbike.png">
        </div>
