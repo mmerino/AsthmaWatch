@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import asthma.watch.model.WeatherData;
-import asthma.watch.service.AsthmaWatch;
+import asthma.watch.service.BusinessDelegate;
 
 @WebServlet("/asthmawatch")
 public class FrontController extends HttpServlet {
@@ -30,7 +30,7 @@ public class FrontController extends HttpServlet {
 			errorOuput(request, response);
 		}
 		try {
-			AsthmaWatch aw = new AsthmaWatch(zip);
+			BusinessDelegate aw = new BusinessDelegate(zip);
 			for (String weatherType : weatherTypes) {
 				WeatherData weatherData = aw.fetchWeatherData(weatherType);
 				request.setAttribute(weatherType, weatherData);

@@ -8,14 +8,14 @@ import asthma.watch.InvalidWeatherTypeException;
 import asthma.watch.model.WeatherData;
 import asthma.watch.util.ConstantValues;
 
-public class AsthmaWatch {
+public class BusinessDelegate {
 	String zip;
 
-	public AsthmaWatch(String zip) {
+	public BusinessDelegate(String zip) {
 		this.zip = zip;
 	}
 
-	public AsthmaWatch() {
+	public BusinessDelegate() {
 	}
 
 	public WeatherData fetchWeatherData(String weatherType) throws IOException, APIDownExcpetion, InvalidWeatherTypeException {
