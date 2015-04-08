@@ -30,9 +30,9 @@ public class FrontController extends HttpServlet {
 			errorOuput(request, response);
 		}
 		try {
-			BusinessDelegate aw = new BusinessDelegate(zip);
+			BusinessDelegate apiDelegate = new BusinessDelegate(zip);
 			for (String weatherType : weatherTypes) {
-				WeatherData weatherData = aw.fetchWeatherData(weatherType);
+				WeatherData weatherData = apiDelegate.fetchWeatherData(weatherType);
 				request.setAttribute(weatherType, weatherData);
 			}
 		} catch (Exception e) {

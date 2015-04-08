@@ -23,7 +23,7 @@ import asthma.watch.model.PollutionDTO;
 import asthma.watch.model.WeatherDTO;
 import asthma.watch.model.WeatherData;
 import asthma.watch.service.DTOFactory;
-import asthma.watch.service.AsthmaWatch;
+import asthma.watch.service.BusinessDelegate;
 import asthma.watch.util.ConstantValues;
 
 import com.google.gson.Gson;
@@ -32,7 +32,7 @@ import com.google.gson.GsonBuilder;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class AsthmaWatchTest {
+public class BusinessDelegateTest {
 
 	HttpServletRequest request = mock(HttpServletRequest.class);
 	HttpServletResponse response = mock(HttpServletResponse.class);
@@ -40,13 +40,13 @@ public class AsthmaWatchTest {
 
 	@Test
 	public void primaryObjectConstructorTest() {
-		AsthmaWatch aw = new AsthmaWatch(zip);
+		BusinessDelegate apiDelegate = new BusinessDelegate(zip);
 	}
 
 	@Test
 	public void primaryObjectSwitchCaseConditions() throws Exception {
-		AsthmaWatch aw = new AsthmaWatch(zip);
-		aw.fetchWeatherData("conditions");
+		BusinessDelegate apiDelegate = new BusinessDelegate(zip);
+		apiDelegate.fetchWeatherData("conditions");
 		String weatherType = "conditions";
 		URL actual = new URL(ConstantValues.WU_URL + weatherType + "/q/" + zip
 				+ ".json");
@@ -56,7 +56,7 @@ public class AsthmaWatchTest {
 	}
 
 	public void primaryObjectSwitchCasePollution() throws Exception {
-		AsthmaWatch aw = new AsthmaWatch(zip);
+		BusinessDelegate aw = new BusinessDelegate(zip);
 		aw.fetchWeatherData("pollution");
 		URL actual = new URL(ConstantValues.EPA_URL + zip);
 		URL expected = new URL(
@@ -66,7 +66,7 @@ public class AsthmaWatchTest {
 
 	@Test
 	public void primaryObjectSwitchCasePollen() throws Exception {
-		AsthmaWatch aw = new AsthmaWatch(zip);
+		BusinessDelegate apiDelegate= new BusinessDelegate(zip);
 		// aw.fetchWeatherData("pollen");
 		// URL expectedurl= new URL("www.stuff.com");
 		// assertEquals(expectedurl, url);
