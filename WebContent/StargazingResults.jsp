@@ -4,9 +4,38 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Asthma Watch</title>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<link rel="stylesheet" type="text/css" href="displayResults.css">
+<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
+<div class="background">
+		<div class="transbox" class="double">
 
+			<h1>Thank you for using AsthmaWatch</h1>
+			<div id="background-wrap">
+				<div class="x1">
+					<div class="cloud"></div>
+				</div>
+
+
+				<div class="x2">
+					<div class="cloud"></div>
+				</div>
+
+				<div class="x3">
+					<div class="cloud"></div>
+				</div>
+
+				<div class="x4">
+					<div class="cloud"></div>
+				</div>
+
+				<div class="x5">
+					<div class="cloud"></div>
+				</div>
+			</div>
+<p>Here is your current stargazing information:</p>
 </body>
 </html>

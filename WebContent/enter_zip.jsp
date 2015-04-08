@@ -10,8 +10,7 @@
 		<div class="background">
 			<div class="transbox">
 				<p>
-					Please enter your zip code for the current asthma information
-					and then click the submit button.
+					Please enter your zip code and choose a condition button.
 				</p>
 				<p>
 					<i>${message}</i>
