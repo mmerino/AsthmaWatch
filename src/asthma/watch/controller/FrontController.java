@@ -23,12 +23,10 @@ public class FrontController extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String zip = request.getParameter("zip");
-		String type = request.getParameter("type");
 		String[] weatherTypes = { "pollen", "conditions", "pollution",
 				"forecast" };
-		if (zip == null || zip.isEmpty() || zip.length() < 5) {
+		if (zip == null || zip.isEmpty() || zip.length() < 5)
 			errorOuput(request, response);
-		}
 		try {
 			AsthmaWatch aw = new AsthmaWatch(zip);
 			for (String weatherType : weatherTypes) {
@@ -40,47 +38,13 @@ public class FrontController extends HttpServlet {
 					"There was an error: " + e.getMessage());
 			errorOuput(request, response);
 		}
-
-		dispatchResults(type, request, response);
+		AsthmaResults(request, response);
 	}
 
-	/**
-	 * Determines the page to show the user based on the type query parameter and sends
-	 * it through the servlet dispatcher. Defaults to AsthmaResults on invalid/empty value.
-	 * 
-	 * @param type Either "asthma", "stargazing", or "cycling"
-	 * @param request
-	 * @param response
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	protected void dispatchResults(String type, HttpServletRequest request,
+	protected void AsthmaResults(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
-		if (type.equals("stargazing")) {
-			dispatchStargazingResults(request, response);
-		} else if (type.equals("cycling")) {
-			dispatchCyclingResults(request, response);
-		} else {
-			dispatchAsthmaResults(request, response);
-		}
-	}
-	
-	protected void dispatchAsthmaResults(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("AsthmaResults.jsp").forward(request, response);
-	}
-	
-	protected void dispatchCyclingResults(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		// TODO: no cycling results page
-		request.getRequestDispatcher("CyclingResults.jsp").forward(request, response);
-	}
-	
-	protected void dispatchStargazingResults(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		// TODO: this page is just a placeholder right now
-		request.getRequestDispatcher("StargazingResults.jsp").forward(request, response);
+		request.getRequestDispatcher("AsthmaResults.jsp").forward(request,
+				response);
 	}
 
 	// validate the parameters
