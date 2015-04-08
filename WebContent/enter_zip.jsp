@@ -4,14 +4,13 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<link rel="stylesheet" type="text/css" href="enter_zip.css">
 		<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-		<title>Asthma Watch</title>
+		<title>Weather Watch</title>
 	</head>
 	<body>
 		<div class="background">
 			<div class="transbox">
 				<p>
-					Please enter your zip code for the current asthma information
-					and then click the submit button.
+					Please enter your zip code and choose a condition button.
 				</p>
 				<p>
 					<i>${message}</i>

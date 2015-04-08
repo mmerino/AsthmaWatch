@@ -1,7 +1,9 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Weather Watch</title>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <link rel="stylesheet" type="text/css" href="displayResults.css">
@@ -36,20 +38,19 @@
 					<div class="cloud"></div>
 				</div>
 			</div>
-
-			<p>Here is your current asthma information:</p>
-			<label>Asthma Condition:</label> ${pollen.predominantPollen} <br>
-			<label>Relative Humidity:</label> ${conditions.humidity} <br> <label>Wind
-				Speed(MPH):</label> ${conditions.windSpeed} <br> <label>Heat
-				Index:</label> ${conditions.temp} <br> <label>Pressure Trend:</label>
-			${conditions.pressureTrend} <br> <label>Pollen Count:</label>
-			${pollen.pollenCount[0]} <br><label>Pollution(Air Quality Index):</label>
-			${pollution.airQualityIndex} <br>
+<p>Here is your current cycling information:</p>
+			<label>Wind Description:</label>${conditions.windDescription}<br> 
+			<label>Heat Index:</label>${conditions.temp}<br> 
+			<label>UV Index:</label>${conditions.uvIndex}<br>
+			<label>Precipitation:</label>${conditions.oneHourPrecip}<br> 
+			<label>Pollen Count:</label>${pollen.pollenCount[0]}<br>
 			<img src = "${forecast.forecastIcon[0]}" alt=  "forecast1">
 			<img src = "${forecast.forecastIcon[1]}" alt = "forecast2">
 			<img src = "${forecast.forecastIcon[2]}" alt = "forecast3">
-			<img src = "${forecast.forecastIcon[3]}" alt = "forecast4">
-			<div>
+			<img src = "${forecast.forecastIcon[3]}" alt = "forecast4">	
+</head>
+<body>
+<div>
 				<script type="text/javascript">
 		google.load("visualization", "1.1", {
 			packages : [ "corechart" ]
@@ -66,9 +67,9 @@
 			});
 			
 			data.addRows([ [ 'Pollen', parseInt('${pollen.pollenBar[0]}') , '' ],
-					[ 'Humidity', parseInt('${conditions.humidityBar}'), '' ], 
+					[ 'Precipitation', parseInt('${conditions.oneHourPrecipBar}'), '' ],
 					[ 'Temp', parseInt('${conditions.tempBar}'), '' ],
-					[ 'Pollution', parseInt('${pollution.airQualityBar}'), '' ],
+					[ 'UV', parseInt('${conditions.uvBar}'), '' ],
 					[ 'Wind', parseInt('${conditions.windBar}'), '' ], ]);
 			
 			
@@ -105,8 +106,5 @@
 	<div id="chart_div" style="width: 600px; height: 400px;"></div>
 			</div>
 		</div>
-	</div>
 </body>
-
-
 </html>
