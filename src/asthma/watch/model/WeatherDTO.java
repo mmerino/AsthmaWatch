@@ -72,10 +72,10 @@ public class WeatherDTO implements WeatherData {
 	}
 	
 	public void setUvBar() {
-		int uvInt = Integer.parseInt("uvIndex");
-		if (uvInt < 3) {
+		double uvDouble = Double.parseDouble(uv);
+		if (uvDouble < 3) {
 			uvBar = 1.0;
-		} else if (uvInt > 7) {
+		} else if (uvDouble > 7) {
 			uvBar = 3.0;
 		} else {
 			uvBar = 2.0;
@@ -83,8 +83,8 @@ public class WeatherDTO implements WeatherData {
 	}
 	
 	public void setOneHourPrecipBar() {
-		int preciptInt = Integer.parseInt(oneHourPrecip);
-		if (preciptInt > 0) {
+		double preciptDouble = Double.parseDouble(oneHourPrecip);
+		if (preciptDouble > 0) {
 			oneHourPrecipBar = 3.0;
 		} else {
 			oneHourPrecipBar = 1.0;
