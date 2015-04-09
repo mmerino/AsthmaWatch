@@ -1,10 +1,23 @@
 @CHARSET "ISO-8859-1";
 h1 {
     text-align: center;
+    background-color: #cbccbd;
+    color: #1c0a6c;
+    padding: 10px;
+    border-radius: 25px;
 }
 
 p {
     text-align: center;
+    font-size:	22px;
+}
+
+label {
+	padding: 10px;
+}
+
+img {
+	padding-top: 20px;
 }
 
 div {
@@ -20,8 +33,8 @@ div {
 body {
 	background: #6ab7d4;
 	text-align: center;
-	color: #333;
-	font-family: Lato, Sans Serif;
+	color: #1c0a6c;
+	font-family: 'Lato', Sans Serif;
 	height: 100vh;
 	margin: 0;
 	padding: .625em;
@@ -51,9 +64,7 @@ div.transbox {
 }
 
 div.transbox p {
-    margin: 5%;
     font-weight: bold;
-    color: #000000;
 }
 
 /* KEYFRAMES */

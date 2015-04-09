@@ -66,11 +66,11 @@
 				role : 'annotation'
 			});
 			
-			data.addRows([ [ 'Pollen', parseInt('${pollen.pollenBar[0]}') , '' ],
-					[ 'Precipitation', parseInt('${conditions.oneHourPrecipBar}'), '' ],
-					[ 'Temp', parseInt('${conditions.tempBar}'), '' ],
-					[ 'UV', parseInt('${conditions.uvBar}'), '' ],
-					[ 'Wind', parseInt('${conditions.windBar}'), '' ], ]);
+			data.addRows([ [ 'Pollen', parseInt('${pollen.pollenBar[0]}') , '${pollen.pollenCount[0]}' ],
+					[ 'Precipitation', parseInt('${conditions.oneHourPrecipBar}'), '${conditions.oneHourPrecip}' ],
+					[ 'Temp', parseInt('${conditions.tempBar}'), '${conditions.temp}' ],
+					[ 'UV', parseInt('${conditions.uvBar}'), '${conditions.uvIndex}' ],
+					[ 'Wind', parseInt('${conditions.windBar}'), '${conditions.windDescription}' ], ]);
 			
 			
 			var view = new google.visualization.DataView(data);

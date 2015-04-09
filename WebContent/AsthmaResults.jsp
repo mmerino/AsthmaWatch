@@ -38,13 +38,13 @@
 			</div>
 
 			<p>Here is your current asthma information:</p>
-			<label>Asthma Condition:</label> ${pollen.predominantPollen} <br>
-			<label>Relative Humidity:</label> ${conditions.humidity} <br> <label>Wind
-				Speed(MPH):</label> ${conditions.windSpeed} <br> <label>Heat
-				Index:</label> ${conditions.temp} <br> <label>Pressure Trend:</label>
-			${conditions.pressureTrend} <br> <label>Pollen Count:</label>
-			${pollen.pollenCount[0]} <br><label>Pollution(Air Quality Index):</label>
-			${pollution.airQualityIndex} <br>
+			<label>Asthma Condition:</label> <i>${pollen.predominantPollen} </i><br>
+			<label>Relative Humidity:</label> <i>${conditions.humidity} <br> 
+			</i><label>Wind Speed(MPH):</label> <i>${conditions.windSpeed} </i><br> 
+			<label>Heat Index:</label> <i>${conditions.temp} </i><br> 
+			<label>Pressure Trend:</label> <i>${conditions.pressureTrend} </i><br>
+			<label>Pollen Count:</label> <i>${pollen.pollenCount[0]} </i><br>
+			<label>Pollution(Air Quality Index):</label> <i>${pollution.airQualityIndex} </i><br>
 			<img src = "${forecast.forecastIcon[0]}" alt=  "forecast1">
 			<img src = "${forecast.forecastIcon[1]}" alt = "forecast2">
 			<img src = "${forecast.forecastIcon[2]}" alt = "forecast3">
@@ -65,11 +65,11 @@
 				role : 'annotation'
 			});
 			
-			data.addRows([ [ 'Pollen', parseInt('${pollen.pollenBar[0]}') , '' ],
-					[ 'Humidity', parseInt('${conditions.humidityBar}'), '' ], 
-					[ 'Temp', parseInt('${conditions.tempBar}'), '' ],
-					[ 'Pollution', parseInt('${pollution.airQualityBar}'), '' ],
-					[ 'Wind', parseInt('${conditions.windBar}'), '' ], ]);
+			data.addRows([ [ 'Pollen', parseInt('${pollen.pollenBar[0]}') , '${pollen.pollenCount[0]}' ],
+					[ 'Humidity', parseInt('${conditions.humidityBar}'), '${conditions.humidity} ' ], 
+					[ 'Temp', parseInt('${conditions.tempBar}'), '${conditions.temp}' ],
+					[ 'Pollution', parseInt('${pollution.airQualityBar}'), '${pollution.airQualityIndex}' ],
+					[ 'Wind', parseInt('${conditions.windBar}'), '${conditions.windSpeed}' ], ]);
 			
 			
 			var view = new google.visualization.DataView(data);
