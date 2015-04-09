@@ -106,6 +106,7 @@
 			</div>
 		</div>
 	</div>
+	<a href="javascript:history.back()">Go Back</a>
 </body>
 
 

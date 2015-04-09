@@ -106,5 +106,6 @@
 	<div id="chart_div" style="width: 600px; height: 400px;"></div>
 			</div>
 		</div>
+	<a href="javascript:history.back()">Go Back</a>
 </body>
 </html>
