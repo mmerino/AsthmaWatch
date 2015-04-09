@@ -8,6 +8,7 @@ public class PollutionDTO implements WeatherData {
 	int airQualityBar;
 	
 	public void setAttributes() {
+//		"stuff in DTO = crap in json"
 		this.airQualityIndex = Category.Number;
 		setAirQualityBar();
 	}

@@ -21,6 +21,7 @@ public class WeatherDTO implements WeatherData {
 	double oneHourPrecipBar;
 	
 	public void setAttributes() {
+//		"stuff in DTO = crap in json"
 		this.temp = current_observation.temp_f;
 		this.relativeHumidity = current_observation.relative_humidity;
 		this.windDescription = current_observation.wind_string;

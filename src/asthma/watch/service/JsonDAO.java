@@ -22,22 +22,30 @@ public class JsonDAO {
 
 	public WeatherData getDTO() throws IOException, APIDownException,
 			InvalidWeatherTypeException {
+		// get the json
 		String json = getJson(url);
+		// get the value object from the appropriate DTO, pass it up to the
+		// business delegate
 		return DTOFactory.fetchWeatherInformation(weatherType, json);
 	}
 
 	public String getJson(URL url) throws IOException, APIDownException {
 		StringBuilder json = new StringBuilder();
+		// open a stream from the url
 		try (InputStream input = url.openStream();
 				BufferedReader buffer = new BufferedReader(
 						new InputStreamReader(input, StandardCharsets.UTF_8));) {
 			String lines;
+			// append the stream from URL to the JSON, as long as there is more
+			// coming
 			while ((lines = buffer.readLine()) != null) {
 				json.append(lines);
 			}
 		} catch (Exception ex) {
 			throw new APIDownException(weatherType);
 		}
+		// Pass JSON on up to getDAO, where it will be sent to the DTOFactory
+		// for fetching the data
 		return json.toString();
 	}
 }

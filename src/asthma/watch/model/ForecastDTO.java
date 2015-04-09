@@ -12,6 +12,7 @@ public class ForecastDTO implements WeatherData {
 	String[] forecastIcon;
 
 	public void setAttributes() {
+//		"stuff in DTO = stuff in json"
 		int forecastLength = forecast.simpleforecast.forecastday.length;
 		high = new String[forecastLength];
 		low = new String[forecastLength];

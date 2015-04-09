@@ -21,6 +21,7 @@ public class PollenDTO implements WeatherData {
 	}
 	
 	public void setAttributes() {
+//		"stuff in DTO = crap in json"
 		this.forecast = pollenForecast.forecast;
 		this.predominantPollen = pollenForecast.pp;
 		setPollenBar();
