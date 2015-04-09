@@ -31,8 +31,12 @@
 			<img src = "${forecast.forecastIcon[3]}" alt = "forecast4"><br>
 			<label>Current Phase:</label><br>
 			<img src="${astronomy.moonPic}"><br>
+			
+			<a href="javascript:history.back()">Go Back</a>
+			
 		</div>
 	</div>
-	<a href="javascript:history.back()">Go Back</a>
+	
 </body>
+<footer><img src="images/wundergroundLogo_4c.png"></footer>
 </html>

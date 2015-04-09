@@ -60,7 +60,7 @@
 		function drawChart() {
 			var data = new google.visualization.DataTable();
 			data.addColumn('string', 'Name');
-			data.addColumn('number', 'Value');
+			data.addColumn('number', 'Danger Level');
 			data.addColumn({
 				type : 'string',
 				role : 'annotation'
@@ -104,8 +104,10 @@
 	</script>
 
 	<div id="chart_div" style="width: 600px; height: 400px;"></div>
+	
 			</div>
-		</div>
-	<a href="javascript:history.back()">Go Back</a>
+		</div>	
+		
 </body>
+<footer><a href="javascript:history.back()">Go Back</a><p> Powered By: <img src="images/wundergroundLogo_4c.png"></footer>
 </html>

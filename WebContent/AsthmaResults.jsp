@@ -38,7 +38,7 @@
 			</div>
 
 			<p>Here is your current asthma information:</p>
-			<label>Asthma Condition:</label> <i>${pollen.predominantPollen} </i><br>
+			<label>Pollen Type:</label> <i>${pollen.predominantPollen} </i><br>
 			<label>Relative Humidity:</label> <i>${conditions.humidity} <br> 
 			</i><label>Wind Speed(MPH):</label> <i>${conditions.windSpeed} </i><br> 
 			<label>Heat Index:</label> <i>${conditions.temp} </i><br> 
@@ -59,7 +59,7 @@
 		function drawChart() {
 			var data = new google.visualization.DataTable();
 			data.addColumn('string', 'Name');
-			data.addColumn('number', 'Value');
+			data.addColumn('number', 'Danger Level');
 			data.addColumn({
 				type : 'string',
 				role : 'annotation'
@@ -106,8 +106,8 @@
 			</div>
 		</div>
 	</div>
-	<a href="javascript:history.back()">Go Back</a>
+	
 </body>
 
-
+<footer><a href="javascript:history.back()">Go Back</a><p>Powered By:</p> <img src="images/wundergroundLogo_4c.png"></footer>
 </html>

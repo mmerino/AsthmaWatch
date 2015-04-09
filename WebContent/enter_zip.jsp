@@ -6,12 +6,14 @@
 		<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
 		<title>Weather Watch</title>
 	</head>
+	
 	<body>
 		<div class="background">
 			<div class="transbox">
-				<p>
+			<h1> Welcome To Weather Watch!</h1>
+				<h2>
 					Please enter your zip code and choose a condition button.
-				</p>
+				</h2>
 				<p>
 					<i>${message}</i>
 				</p>
