@@ -19,12 +19,12 @@
 			<div class="clouds"></div>
 		</div>
 <p>Here is your current stargazing information:</p>
-			<label>Percentage of Moon Illuminated:</label>${astronomy.percentIlluminated}<br>
-			<label>Phase of the Moon:</label>${astronomy.moonPhase}<br> 
-			<label>Precipitation:</label>${conditions.oneHourPrecip}<br>
-			<label>Pollution(Air Quality Index):</label>${pollution.airQualityIndex} <br>
-			<label>Sunrise:</label>${astronomy.sunrise} <br>
-			<label>Sunset:</label>${astronomy.sunset} <br>
+			<label>Percentage of Moon Illuminated:</label><i>${astronomy.percentIlluminated}</i><br>
+			<label>Phase of the Moon:</label><i>${astronomy.moonPhase}</i><br> 
+			<label>Precipitation:</label><i>${conditions.oneHourPrecip}</i><br>
+			<label>Pollution(Air Quality Index):</label><i>${pollution.airQualityIndex}</i><br>
+			<label>Sunrise:</label><i>${astronomy.sunrise}</i><br>
+			<label>Sunset:</label><i>${astronomy.sunset}</i><br>
 			<img src = "${forecast.forecastIcon[0]}" alt=  "forecast1">
 			<img src = "${forecast.forecastIcon[1]}" alt = "forecast2">
 			<img src = "${forecast.forecastIcon[2]}" alt = "forecast3">

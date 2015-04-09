@@ -1,11 +1,17 @@
 @CHARSET "ISO-8859-1";
 h1 {
     text-align: center;
+    background-color: #cbccbd;
+    padding: 10px;
+    border-radius: 25px;
 }
 
 p {
     text-align: center;
+    font-size:	22px;
+    color: #b60505;
 }
+
 
 div {
     text-align: center;
@@ -19,8 +25,8 @@ div {
 body {
 	background: #6ab7d4;
 	text-align: center;
-	color: #333;
-	font-family: Lato, Sans Serif;
+	color: #b60505;
+	font-family: 'Lato', Sans Serif;
 	height: 100vh;
 	margin: 0;
 	padding: .625em;
@@ -52,7 +58,6 @@ div.transbox {
 div.transbox p {
     margin: 5%;
     font-weight: bold;
-    color: #000000;
 }
 * {
     margin: 0;
