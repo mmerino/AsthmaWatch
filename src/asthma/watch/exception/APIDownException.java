@@ -1,4 +1,4 @@
-package asthma.watch.exceptions;
+package asthma.watch.exception;
 
 public class APIDownException extends Exception {
 	String weatherType;

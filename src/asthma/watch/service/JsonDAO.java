@@ -7,8 +7,8 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
-import asthma.watch.exceptions.APIDownException;
-import asthma.watch.exceptions.InvalidWeatherTypeException;
+import asthma.watch.exception.APIDownException;
+import asthma.watch.exception.InvalidWeatherTypeException;
 import asthma.watch.model.WeatherData;
 
 public class JsonDAO {
@@ -28,15 +28,13 @@ public class JsonDAO {
 
 	public String getJson(URL url) throws IOException, APIDownException {
 		StringBuilder json = new StringBuilder();
-		try {
-			InputStream input = url.openStream();
-			BufferedReader buffer = new BufferedReader(new InputStreamReader(
-					input, StandardCharsets.UTF_8));
+		try (InputStream input = url.openStream();
+				BufferedReader buffer = new BufferedReader(
+						new InputStreamReader(input, StandardCharsets.UTF_8));) {
 			String lines;
 			while ((lines = buffer.readLine()) != null) {
 				json.append(lines);
 			}
-			buffer.close();
 		} catch (Exception ex) {
 			throw new APIDownException(weatherType);
 		}

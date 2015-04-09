@@ -16,8 +16,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import asthma.watch.exceptions.APIDownException;
-import asthma.watch.exceptions.InvalidWeatherTypeException;
+import asthma.watch.exception.APIDownException;
+import asthma.watch.exception.InvalidWeatherTypeException;
 import asthma.watch.model.AstronomyDTO;
 import asthma.watch.model.ForecastDTO;
 import asthma.watch.model.PollenDTO;

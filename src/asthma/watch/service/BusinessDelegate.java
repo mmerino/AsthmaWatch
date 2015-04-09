@@ -3,8 +3,8 @@ package asthma.watch.service;
 import java.io.IOException;
 import java.net.URL;
 
-import asthma.watch.exceptions.APIDownException;
-import asthma.watch.exceptions.InvalidWeatherTypeException;
+import asthma.watch.exception.APIDownException;
+import asthma.watch.exception.InvalidWeatherTypeException;
 import asthma.watch.model.WeatherData;
 import asthma.watch.util.ConstantValues;
 

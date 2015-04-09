@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import asthma.watch.exceptions.APIDownException;
-import asthma.watch.exceptions.InvalidWeatherTypeException;
 import asthma.watch.model.WeatherData;
 import asthma.watch.service.BusinessDelegate;
 
@@ -47,18 +45,6 @@ public class FrontController extends HttpServlet {
 		dispatchResults(type, request, response);
 	}
 
-	/**
-	 * Determines the page to show the user based on the type query parameter
-	 * and sends it through the servlet dispatcher. Defaults to AsthmaResults on
-	 * invalid/empty value.
-	 * 
-	 * @param type
-	 *            Either "asthma", "stargazing", or "cycling"
-	 * @param request
-	 * @param response
-	 * @throws ServletException
-	 * @throws IOException
-	 */
 	protected void dispatchResults(String type, HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
@@ -79,19 +65,16 @@ public class FrontController extends HttpServlet {
 
 	protected void dispatchCyclingResults(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO: no cycling results page
 		request.getRequestDispatcher("CyclingResults.jsp").forward(request,
 				response);
 	}
 
 	protected void dispatchStargazingResults(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO: this page is just a placeholder right now
 		request.getRequestDispatcher("StargazingResults.jsp").forward(request,
 				response);
 	}
 
-	// validate the parameters
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -102,7 +85,6 @@ public class FrontController extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		String message = (String) request.getAttribute("message");
 		if (message == null) {
-			// TODO: Pass the error message instead of static line
 			message = "Please fill in the zip code.";
 		}
 
