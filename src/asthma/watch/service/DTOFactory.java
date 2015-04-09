@@ -2,8 +2,6 @@ package asthma.watch.service;
 
 import java.io.IOException;
 
-import javax.activity.InvalidActivityException;
-
 import asthma.watch.APIDownException;
 import asthma.watch.InvalidWeatherTypeException;
 import asthma.watch.model.AstronomyDTO;

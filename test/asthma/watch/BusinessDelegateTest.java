@@ -21,7 +21,6 @@ import asthma.watch.model.ForecastDTO;
 import asthma.watch.model.PollenDTO;
 import asthma.watch.model.PollutionDTO;
 import asthma.watch.model.WeatherDTO;
-import asthma.watch.model.WeatherData;
 import asthma.watch.service.DTOFactory;
 import asthma.watch.service.BusinessDelegate;
 import asthma.watch.service.JsonDAO;
@@ -101,14 +100,14 @@ public class BusinessDelegateTest {
 	}
 
 	@Test(expected = APIDownException.class)
-	public void emptyJsonReturnsThrowsCustomException() throws Exception {
-		URL url = getMockUrlContents("{ }");
+	public void emptyJsonReturnsThrowsAPIDownException() throws Exception {
+		URL url = new URL("http://www.ffffffffffffpoipoipoipoiadfqwerty.com/");
 		JsonDAO jsonDAO = new JsonDAO("conditions", url);
 		jsonDAO.getJson(url);
 	}
 
 	@Test(expected = InvalidWeatherTypeException.class)
-	public void invalidWeatherTypeThrowsCustomExzception() throws Exception {
+	public void invalidWeatherTypeThrowsINvalidWeatherTypeException() throws Exception {
 		BusinessDelegate apiDelegate = new BusinessDelegate(zip);
 		apiDelegate.fetchWeatherData("bananas");
 	}
