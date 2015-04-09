@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import asthma.watch.APIDownException;
-import asthma.watch.InvalidWeatherTypeException;
+import asthma.watch.exceptions.APIDownException;
+import asthma.watch.exceptions.InvalidWeatherTypeException;
 import asthma.watch.model.WeatherData;
 import asthma.watch.service.BusinessDelegate;
 

@@ -1,4 +1,4 @@
-package asthma.watch;
+package asthma.watch.exceptions;
 
 public class InvalidWeatherTypeException extends Exception {
 	String weatherType;

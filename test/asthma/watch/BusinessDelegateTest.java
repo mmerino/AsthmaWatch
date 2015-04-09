@@ -16,6 +16,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import asthma.watch.exceptions.APIDownException;
+import asthma.watch.exceptions.InvalidWeatherTypeException;
 import asthma.watch.model.AstronomyDTO;
 import asthma.watch.model.ForecastDTO;
 import asthma.watch.model.PollenDTO;
@@ -93,10 +95,10 @@ public class BusinessDelegateTest {
 	public void primaryObjectSwitchCasePollen() throws Exception {
 		BusinessDelegate apiDelegate = new BusinessDelegate(zip);
 		apiDelegate.fetchWeatherData("pollen");
-		URL url = new URL(ConstantValues.CLARITIN_URL + zip);
-		URL expectedurl = new URL(
+		URL actual = new URL(ConstantValues.CLARITIN_URL + zip);
+		URL expected = new URL(
 				"http://www.claritin.com/weatherpollenservice/weatherpollenservice.svc/getforecast/48145");
-		assertEquals(expectedurl, url);
+		assertEquals(expected, actual);
 	}
 
 	@Test(expected = APIDownException.class)
@@ -107,9 +109,14 @@ public class BusinessDelegateTest {
 	}
 
 	@Test(expected = InvalidWeatherTypeException.class)
-	public void invalidWeatherTypeThrowsINvalidWeatherTypeException() throws Exception {
+	public void invalidWeatherTypeThrowsInvalidWeatherTypeException() throws Exception {
 		BusinessDelegate apiDelegate = new BusinessDelegate(zip);
 		apiDelegate.fetchWeatherData("bananas");
+	}
+	
+	@Test(expected = InvalidWeatherTypeException.class)
+	public void invalidWeatherTypeThrowsInvalidWeatherTypeExceptionInFactory() throws Exception {
+		DTOFactory.fetchWeatherInformation("bananas", "json");
 	}
 
 	@Test
@@ -128,6 +135,7 @@ public class BusinessDelegateTest {
 		actual.setAttributes();
 
 		assertEquals(expected.getTemp(), actual.getTemp(), 1e-5);
+		assertEquals(expected.getHumidity(), actual.getHumidity(), 1e-5);
 		assertEquals(expected.getHeatIndex(), actual.getHeatIndex());
 		assertEquals(expected.getPressureTrend(), actual.getPressureTrend());
 		assertEquals(expected.getTemp(), actual.getTemp(), 1e-5);
@@ -135,9 +143,13 @@ public class BusinessDelegateTest {
 		assertEquals(expected.getWindDescription(), actual.getWindDescription());
 		assertEquals(expected.getWindDirection(), actual.getWindDirection());
 		assertEquals(expected.getWindSpeed(), actual.getWindSpeed(), 1e-5);
+		assertEquals(expected.getUvIndex(), actual.getUvIndex(), 1e-5);
+		assertEquals(expected.getOneHourPrecip(), actual.getOneHourPrecip());
 		assertEquals(expected.getTempBar(), actual.getTempBar(), 1e-5);
 		assertEquals(expected.getHumidityBar(), actual.getHumidityBar(), 1e-5);
 		assertEquals(expected.getWindBar(), actual.getWindBar(), 1e-5);
+		assertEquals(expected.getUvBar(), actual.getUvBar(), 1e-5);
+		assertEquals(expected.getOneHourPrecipBar(), actual.getOneHourPrecipBar(), 1e-5);
 	}
 
 	@Test
@@ -180,6 +192,9 @@ public class BusinessDelegateTest {
 		assertEquals(expected.getPercentIlluminated(),
 				actual.getPercentIlluminated());
 		assertEquals(expected.getMoonPhase(), actual.getMoonPhase());
+		assertEquals(expected.getSunrise(), actual.getSunrise());
+		assertEquals(expected.getSunset(), actual.getSunset());
+		assertEquals(expected.getMoonPic(), actual.getMoonPic());
 	}
 
 	@Test
@@ -230,6 +245,9 @@ public class BusinessDelegateTest {
 	public void populatedJsonReturnsJsonString() throws Exception {
 		String expected = "{\"current_observation\":{\"relative_humidity\": \"50%\"}}";
 		URL url = getMockUrlContents(expected);
+		JsonDAO jsonDao = new JsonDAO("conditions", url);
+		String actual = jsonDao.getJson(url);
+		assertEquals(expected, actual);
 	}
 
 	public URL getMockUrlContents(String contents) throws Exception {

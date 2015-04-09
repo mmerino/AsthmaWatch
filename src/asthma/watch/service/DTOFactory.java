@@ -2,8 +2,8 @@ package asthma.watch.service;
 
 import java.io.IOException;
 
-import asthma.watch.APIDownException;
-import asthma.watch.InvalidWeatherTypeException;
+import asthma.watch.exceptions.APIDownException;
+import asthma.watch.exceptions.InvalidWeatherTypeException;
 import asthma.watch.model.AstronomyDTO;
 import asthma.watch.model.ForecastDTO;
 import asthma.watch.model.PollenDTO;
@@ -17,7 +17,9 @@ import com.google.gson.JsonParser;
 
 public class DTOFactory {
 
-	public static WeatherData fetchWeatherInformation(String weatherType, String json) throws IOException, InvalidWeatherTypeException, APIDownException {
+	public static WeatherData fetchWeatherInformation(String weatherType,
+			String json) throws IOException, InvalidWeatherTypeException,
+			APIDownException {
 		Gson gson = new GsonBuilder().create();
 		WeatherData weatherInfo;
 		switch (weatherType) {
@@ -49,11 +51,7 @@ public class DTOFactory {
 			weatherInfo = new WeatherDTO();
 			throw new InvalidWeatherTypeException(weatherType);
 		}
-		try {
-			weatherInfo.setAttributes();
-		} catch (NullPointerException npe) {
-			throw new APIDownException(weatherType);
-		}
+		weatherInfo.setAttributes();
 		return weatherInfo;
 	}
 }
