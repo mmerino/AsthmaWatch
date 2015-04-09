@@ -56,10 +56,34 @@ public class BusinessDelegateTest {
 				"http://api.wunderground.com/api/7376ff9876400cb0/conditions/q/48145.json");
 		assertEquals(expected, actual);
 	}
+	
+	@Test
+	public void primaryObjectSwitchCaseForecast() throws Exception {
+		BusinessDelegate apiDelegate = new BusinessDelegate(zip);
+		apiDelegate.fetchWeatherData("forecast");
+		String weatherType = "forecast";
+		URL actual = new URL(ConstantValues.WU_URL + weatherType + "/q/" + zip
+				+ ".json");
+		URL expected = new URL(
+				"http://api.wunderground.com/api/7376ff9876400cb0/forecast/q/48145.json");
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void primaryObjectSwitchCaseAstronomy() throws Exception {
+		BusinessDelegate apiDelegate = new BusinessDelegate(zip);
+		apiDelegate.fetchWeatherData("astronomy");
+		String weatherType = "astronomy";
+		URL actual = new URL(ConstantValues.WU_URL + weatherType + "/q/" + zip
+				+ ".json");
+		URL expected = new URL(
+				"http://api.wunderground.com/api/7376ff9876400cb0/astronomy/q/48145.json");
+		assertEquals(expected, actual);
+	}
 
 	public void primaryObjectSwitchCasePollution() throws Exception {
-		BusinessDelegate aw = new BusinessDelegate(zip);
-		aw.fetchWeatherData("pollution");
+		BusinessDelegate apiDelegate = new BusinessDelegate(zip);
+		apiDelegate.fetchWeatherData("pollution");
 		URL actual = new URL(ConstantValues.EPA_URL + zip);
 		URL expected = new URL(
 				"http://www.airnowapi.org//aq/forecast/zipCode/?format=application/json&api_key=D46398E5-2646-4D3B-95A2-A618D3AF3906&zipCode=48145");
@@ -68,17 +92,25 @@ public class BusinessDelegateTest {
 
 	@Test
 	public void primaryObjectSwitchCasePollen() throws Exception {
-		BusinessDelegate apiDelegate= new BusinessDelegate(zip);
-		 apiDelegate.fetchWeatherData("pollen");
-		 URL url = new URL(ConstantValues.CLARITIN_URL + zip);
-		 URL expectedurl= new URL("http://www.claritin.com/weatherpollenservice/weatherpollenservice.svc/getforecast/48145");
-		 assertEquals(expectedurl, url);
+		BusinessDelegate apiDelegate = new BusinessDelegate(zip);
+		apiDelegate.fetchWeatherData("pollen");
+		URL url = new URL(ConstantValues.CLARITIN_URL + zip);
+		URL expectedurl = new URL(
+				"http://www.claritin.com/weatherpollenservice/weatherpollenservice.svc/getforecast/48145");
+		assertEquals(expectedurl, url);
 	}
-	@Test(expected=APIDownException.class)
+
+	@Test(expected = APIDownException.class)
 	public void emptyJsonReturnsThrowsCustomException() throws Exception {
-		URL url = getMockUrlContents("www.fdgsdfhsdh.com/api?fake=true");
+		URL url = getMockUrlContents("{ }");
 		JsonDAO jsonDAO = new JsonDAO("conditions", url);
 		jsonDAO.getJson(url);
+	}
+
+	@Test(expected = InvalidWeatherTypeException.class)
+	public void invalidWeatherTypeThrowsCustomExzception() throws Exception {
+		BusinessDelegate apiDelegate = new BusinessDelegate(zip);
+		apiDelegate.fetchWeatherData("bananas");
 	}
 
 	@Test
@@ -105,8 +137,8 @@ public class BusinessDelegateTest {
 		assertEquals(expected.getWindDirection(), actual.getWindDirection());
 		assertEquals(expected.getWindSpeed(), actual.getWindSpeed(), 1e-5);
 		assertEquals(expected.getTempBar(), actual.getTempBar(), 1e-5);
-		assertEquals(expected.getHumidityBar(), actual.getHumidityBar(),1e-5);
-		assertEquals(expected.getWindBar(), actual.getWindBar(),1e-5);
+		assertEquals(expected.getHumidityBar(), actual.getHumidityBar(), 1e-5);
+		assertEquals(expected.getWindBar(), actual.getWindBar(), 1e-5);
 	}
 
 	@Test
@@ -158,7 +190,8 @@ public class BusinessDelegateTest {
 		Gson gson = new GsonBuilder().create();
 		PollutionDTO expected = new PollutionDTO();
 		JsonParser parser = new JsonParser();
-		String parsedJson = parser.parse(json).getAsJsonArray().get(0).toString();
+		String parsedJson = parser.parse(json).getAsJsonArray().get(0)
+				.toString();
 		expected = gson.fromJson(parsedJson, PollutionDTO.class);
 		expected.setAttributes();
 
@@ -187,9 +220,11 @@ public class BusinessDelegateTest {
 		actual = (PollenDTO) DTOFactory.fetchWeatherInformation("pollen", json);
 		actual.setAttributes();
 
-		assertArrayEquals(expected.getPollenCount(), actual.getPollenCount(),1e-5);
-		assertEquals(expected.getPredominantPollen(),actual.getPredominantPollen());
-		assertArrayEquals(expected.getPollenBar(), actual.getPollenBar(),1e-5);
+		assertArrayEquals(expected.getPollenCount(), actual.getPollenCount(),
+				1e-5);
+		assertEquals(expected.getPredominantPollen(),
+				actual.getPredominantPollen());
+		assertArrayEquals(expected.getPollenBar(), actual.getPollenBar(), 1e-5);
 	}
 
 	@Test

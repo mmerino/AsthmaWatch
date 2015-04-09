@@ -35,7 +35,7 @@ public class JsonDAO {
 			json.append(lines);
 		}
 		buffer.close();
-		if (json == null || json.equals("")) {
+		if (json.length() < 17) {
 			throw new APIDownException(weatherType);
 		}
 		return json.toString();
