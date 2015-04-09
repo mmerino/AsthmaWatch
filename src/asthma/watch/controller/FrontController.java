@@ -31,22 +31,18 @@ public class FrontController extends HttpServlet {
 		if (zip == null || zip.isEmpty() || zip.length() < 5) {
 			errorOutput(request, response);
 		}
-		// try {
-		BusinessDelegate apiDelegate = new BusinessDelegate(zip);
-		for (String weatherType : weatherTypes) {
-			WeatherData weatherData;
-			try {
+		try {
+			BusinessDelegate apiDelegate = new BusinessDelegate(zip);
+			for (String weatherType : weatherTypes) {
+				WeatherData weatherData;
 				weatherData = apiDelegate.fetchWeatherData(weatherType);
 				request.setAttribute(weatherType, weatherData);
-			} catch (APIDownException | InvalidWeatherTypeException e) {
-				// FIXME: handle
 			}
+		} catch (Exception e) {
+			request.setAttribute("message",
+					"There was an error: " + e.getMessage());
+			errorOutput(request, response);
 		}
-		// } catch (Exception e) {
-		// request.setAttribute("message",
-		// "There was an error: " + e.getMessage());
-		// errorOuput(request, response);
-		// }
 
 		dispatchResults(type, request, response);
 	}
@@ -106,7 +102,7 @@ public class FrontController extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		String message = (String) request.getAttribute("message");
 		if (message == null) {
-//			TODO: Pass the error message instead of static line
+			// TODO: Pass the error message instead of static line
 			message = "Please fill in the zip code.";
 		}
 
