@@ -60,7 +60,7 @@
 		function drawChart() {
 			var data = new google.visualization.DataTable();
 			data.addColumn('string', 'Name');
-			data.addColumn('number', 'Danger Level');
+			data.addColumn('number', 'Conditions');
 			data.addColumn({
 				type : 'string',
 				role : 'annotation'
@@ -81,7 +81,7 @@
 
 			chart.draw(view, {
 				height : 400,
-				width : 600,
+				width : 640,
 				series : {
 					0 : {
 						type : 'bars'
