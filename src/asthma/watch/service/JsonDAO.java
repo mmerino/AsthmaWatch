@@ -22,7 +22,12 @@ public class JsonDAO {
 
 	public WeatherData getDTO() throws IOException, APIDownException,
 			InvalidWeatherTypeException {
-		String json = getJson(url);
+		String json;
+		if (weatherType == "pollen") {
+			json = asthma.watch.util.ConstantValues.POLLEN_TEST;
+		} else {
+			json = getJson(url);
+		}
 		return DTOFactory.fetchWeatherInformation(weatherType, json);
 	}
 
